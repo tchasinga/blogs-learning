@@ -12,7 +12,7 @@ export default function Header() {
         <form>
             <TextInput className='w-96 hidden lg:inline' type='text' rightIcon={FiSearch}  placeholder='Search....' />
         </form>
-        <Button className='lg:hidden' variant='primary' color='gray' size='sm' rounded><FiSearch/></Button>
+        <Button className='lg:hidden' variant='primary' color='gray' size='sm' pill rounded><FiSearch/></Button>
     </Navbar>
   )
 }
