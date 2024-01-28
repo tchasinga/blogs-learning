@@ -1,9 +1,17 @@
+import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import Home from './Pages/Home'
+import Dashboard from './Pages/Dashboard'
 
 function App() {
 
   return (
     <div>
-      <h1 className='text-red-500'>Balolwami jack</h1>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   )
 }
