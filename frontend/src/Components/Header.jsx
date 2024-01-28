@@ -15,7 +15,7 @@ export default function Header() {
         </form>
         <Button className='lg:hidden' variant='primary' color='gray' size='sm' pill rounded><FiSearch/></Button>
         <div className=''>
-           <Button className='hidden lg:inline' variant='primary' color='gray' size='sm' pill rounded><FaMoon /></Button>
+           <Button className='w-12 h-10 hidden sm:inline'  variant='primary' color='gray' size='sm' pill rounded><FaMoon /></Button>
         </div>
     </Navbar>
   )
