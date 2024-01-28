@@ -8,7 +8,7 @@ export default function SingUp() {
         <div className=""></div>
 
         {/* Adding second div */}
-        <div></div>
+        <div className=""></div>
       </div>
     </div>
   )
