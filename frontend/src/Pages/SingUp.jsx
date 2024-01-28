@@ -38,7 +38,7 @@ export default function SingUp() {
               <Button className='w-1/2 h-10 hidden sm:inline'  type="submit" variant='primary' color='gray' size='sm' outline pill rounded>Sing Up</Button>
              </form>
              <div>
-                <p className="text-xs my-3 font-medium">Already have an account? <Link to='/sign-in'>Sign In</Link></p>
+                <p className="text-xs my-3 font-medium">Already have an account? <Link to='/sign-in' className="text-blue-500">Sign In</Link></p>
              </div>
         </div>
       </div>
