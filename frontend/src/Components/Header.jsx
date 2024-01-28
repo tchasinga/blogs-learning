@@ -4,7 +4,7 @@ import { FiSearch } from "react-icons/fi";
 import { FaMoon } from "react-icons/fa";
 
 export default function Header() {
-  const location = useLocation();
+  const path = useLocation().pathname;
 
   return (
     <Navbar className='border-b-2'>
@@ -24,19 +24,19 @@ export default function Header() {
            <Navbar.Toggle className='sm:hidden' />
           </div>
            <Navbar.Collapse>
-               <Navbar.Link>
+               <Navbar.Link active={path === "/"}>
                     <Link to='/'>Home</Link>
               </Navbar.Link>
 
-              <Navbar.Link>
+              <Navbar.Link active={path === "/dashboard"}>
               <Link to='/dashboard'>Dashboard</Link>
               </Navbar.Link>
 
-              <Navbar.Link>
+              <Navbar.Link active={path === "/about"}>
                     <Link to='/about'>About</Link>
               </Navbar.Link>
 
-              <Navbar.Link>
+              <Navbar.Link active={path === "/projects"}>
                     <Link to='/projects'>Projects</Link>
               </Navbar.Link>
              
