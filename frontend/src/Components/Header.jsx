@@ -10,8 +10,9 @@ export default function Header() {
             <p>Learning</p>
         </Link>
         <form>
-            <TextInput className='w-96' type='text' rightIcon={FiSearch}  placeholder='Search....' />
+            <TextInput className='w-96 lg:inline' type='text' rightIcon={FiSearch}  placeholder='Search....' />
         </form>
+        
     </Navbar>
   )
 }
