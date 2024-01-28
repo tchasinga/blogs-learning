@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 import {  Alert, Button, Label, Spinner, TextInput , } from 'flowbite-react'
 import { useState } from "react";
+import {useNavigate} from 'react-router-dom'
 
 export default function SingUp() {
+  const navigate = useNavigate()
   const [formData, setFormData] = useState({})
   const [isSingUp, setIsSingUp] = useState(false)
   const [isSingUpError, setIsSingUpError] = useState(null) 
@@ -35,6 +37,8 @@ export default function SingUp() {
         return setIsSingUpError(data.message)
       }
       console.log(data)
+      setIsSingUp(false)
+      navigate('/sign-in')
     } catch (error) {
       setIsSingUp(false)    
       console.log(error)
@@ -92,11 +96,11 @@ export default function SingUp() {
              {isSingUpError && <p className="text-red-500 text-xs">
                   <Alert variant='danger' color='red' size='sm' pill rounded>{isSingUpError}</Alert>
               </p>}
-            {/* {
+            {
               isSingUp && <p className="text-green-500 text-xs">
                 <Alert variant='success' color='green' size='sm' pill rounded>Sing up successfully</Alert>
               </p>
-            } */}
+            }
 
         </div>
       </div>
