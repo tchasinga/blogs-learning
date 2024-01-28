@@ -32,12 +32,13 @@ export default function Header() {
               <Navbar.Link>
                     <Link to='/about'>About</Link>
               </Navbar.Link>
-              
+
               <Navbar.Link>
                     <Link to='/projects'>Projects</Link>
               </Navbar.Link>
              
            </Navbar.Collapse>
+           
         </div>
     </Navbar>
   )
