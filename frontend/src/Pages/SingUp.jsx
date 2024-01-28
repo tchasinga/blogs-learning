@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom";
+import { Link , useNavigate} from "react-router-dom";
 import {  Alert, Button, Label, Spinner, TextInput , } from 'flowbite-react'
 import { useState } from "react";
-import {useNavigate} from 'react-router-dom'
+
 
 export default function SingUp() {
   const navigate = useNavigate()
