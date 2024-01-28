@@ -5,12 +5,14 @@ import About from './Pages/About'
 import SingIn from './Pages/SingIn'
 import SingUp from './Pages/SingUp'
 import Projects from './Pages/Projects'
+import Header from './Components/Header'
 
 function App() {
 
   return (
     <div>
       <BrowserRouter>
+         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/dashboard" element={<Dashboard />} /> 
