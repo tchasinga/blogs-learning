@@ -7,7 +7,7 @@ export default function SingUp() {
       <div className="">
         {/* Adding first div for left side */}
         <div className="">
-        <Link to='/' className=' font-semibold flex items-center gap-1 dark:text-white text-4xl'>
+        <Link to='/' className=' font-semibold flex items-center gap-1 dark:text-white text-5xl'>
             <span className='font-normal px-2 py-1 rounded-xl bg-gradient-to-r font-bold from-indigo-500 via-purple-100 to-pink-100'>Blog&apos;s</span>
             <p>Learning</p>
         </Link>
