@@ -9,8 +9,12 @@ export default function SingUp() {
     console.log(e.target.value)
     setFormData({ ...formData, [e.target.id]: e.target.value })
   }
-
-  console.log(formData)
+  
+  
+  const handlerSubmitForm =async (e) => {
+    e.preventDefault()
+    
+  }
 
   return (
     <div className="min-h-screen mt-20">
@@ -29,7 +33,7 @@ export default function SingUp() {
 
         {/* Adding second div  right side */}
         <div className="">
-             <form className="flex flex-col gap-3">
+             <form className="flex flex-col gap-3" onSubmit={handlerSubmitForm}>
               
               <div className="">
                 <Label value="Set your username"/>
