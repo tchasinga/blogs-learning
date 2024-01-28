@@ -16,6 +16,9 @@ export default function Header() {
         <Button className='lg:hidden' variant='primary' color='gray' size='sm' pill rounded><FiSearch/></Button>
         <div className=''>
            <Button className='w-12 h-10 hidden sm:inline'  variant='primary' color='gray' size='sm' pill rounded><FaMoon /></Button>
+           <Link to='/sign-in'>
+            <Button className='w-12 h-10 hidden sm:inline' variant='primary' color='gray' size='sm' pill rounded>Login</Button>
+           </Link>
         </div>
     </Navbar>
   )
