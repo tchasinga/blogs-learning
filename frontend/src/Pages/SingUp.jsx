@@ -2,6 +2,7 @@
 
 export default function SingUp() {
   return (
-    <div>SingUp</div>
+    <div className="min-h-screen mt-20">
+    </div>
   )
 }
