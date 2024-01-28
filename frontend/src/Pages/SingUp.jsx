@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import {  Label } from 'flowbite-react'
+import {  Label, TextInput , } from 'flowbite-react'
 
 export default function SingUp() {
   return (
@@ -13,10 +13,7 @@ export default function SingUp() {
         </Link>
           <div className="text-sm text-dark-900 font-normal">
           <p>It is important to automate, collect, manage, calculate, and</p>
-         <p>analyze the processing of data and information accurately. Programming</p>
-          <p>is the process of creating a set of instructions that tell a computer</p>
-          <p>how to perform a task. Programming can be done using a variety of</p>
-          <p>computer languages, such as JavaScript, Reactjs, Nextjs, and Tailwindcss...</p>
+          <p>analyze the processing of data and information accurately.</p>
           </div>
         </div>
 
@@ -26,6 +23,17 @@ export default function SingUp() {
               
               <div className="">
                 <Label value="Set your username"/>
+                <TextInput className=' ' type='text' placeholder='Username'  id="username"/>
+              </div>
+
+              <div className="">
+                <Label value="Set your email"/>
+                <TextInput className=' ' type='email' placeholder='Username'  id="email"/>
+              </div>
+
+              <div className="">
+                <Label value="Set your password"/>
+                <TextInput className=' ' type='password' placeholder='Username'  id="password"/>
               </div>
 
              </form>
