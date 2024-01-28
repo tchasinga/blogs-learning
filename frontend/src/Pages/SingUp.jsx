@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
-import {  Label, TextInput , } from 'flowbite-react'
+import {  Button, Label, TextInput , } from 'flowbite-react'
 
 export default function SingUp() {
   return (
     <div className="min-h-screen mt-20">
-      <div className="flex p-3 max-w-3xl mx-auto flex-col md:flex-row md:items-center">
+      <div className="flex p-3 justify-center gap-20 items-center  max-w-3xl mx-auto flex-col md:flex-row md:items-center">
         {/* Adding first div for left side */}
         <div className="">
         <Link to='/' className=' py-4 font-semibold flex items-center gap-1 dark:text-white text-5xl'>
@@ -12,18 +12,18 @@ export default function SingUp() {
             <p>Learning</p>
         </Link>
           <div className="text-sm text-dark-900 font-normal">
-          <p>It is important to automate, collect, manage, calculate, and</p>
-          <p>analyze the processing of data and information accurately.</p>
+          <p>It is important to automate, collect , manage...</p>
+          <p>analyze the processing of data  and information accurately.</p>
           </div>
         </div>
 
         {/* Adding second div  right side */}
         <div className="">
-             <form>
+             <form className="flex flex-col gap-3">
               
               <div className="">
                 <Label value="Set your username"/>
-                <TextInput className=' ' type='text' placeholder='Username'  id="username"/>
+                <TextInput className='w-96' type='text' placeholder='Username'  id="username"/>
               </div>
 
               <div className="">
@@ -35,8 +35,11 @@ export default function SingUp() {
                 <Label value="Set your password"/>
                 <TextInput className=' ' type='password' placeholder='Username'  id="password"/>
               </div>
-
+              <Button className='w-1/2 h-10 hidden sm:inline'  type="submit" variant='primary' color='gray' size='sm' outline pill rounded>Sing Up</Button>
              </form>
+             <div>
+                <p className="text-xs my-3 font-medium">Already have an account? <Link to='/sign-in'>Sign In</Link></p>
+             </div>
         </div>
       </div>
     </div>
