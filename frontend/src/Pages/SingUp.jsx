@@ -1,11 +1,13 @@
 import { Link } from "react-router-dom";
 import {  Button, Label, TextInput , } from 'flowbite-react'
+import { useState } from "react";
 
 export default function SingUp() {
-
+  const [formData, setFormData] = useState({})
   const handlerSingupChanges = (e) => {
     e.preventDefault()
     console.log(e.target.value)
+    setFormData({ ...formData, [e.target.id]: e.target.value })
   }
 
   return (
