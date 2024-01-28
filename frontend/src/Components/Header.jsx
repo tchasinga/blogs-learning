@@ -1,4 +1,4 @@
-import { Navbar } from 'flowbite-react'
+import { Navbar, TextInput } from 'flowbite-react'
 import { Link } from 'react-router-dom'
 
 export default function Header() {
@@ -8,6 +8,9 @@ export default function Header() {
             <span className='text-xl font-normal px-2 py-1 rounded-xl bg-gradient-to-r font-bold from-indigo-500 via-purple-100 to-pink-100'>Blog&apos;s</span>
             <p>Learning</p>
         </Link>
+        <form>
+            <TextInput className='w-96' placeholder='Search' />
+        </form>
     </Navbar>
   )
 }
