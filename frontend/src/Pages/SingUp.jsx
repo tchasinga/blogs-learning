@@ -10,6 +10,8 @@ export default function SingUp() {
     setFormData({ ...formData, [e.target.id]: e.target.value })
   }
 
+  console.log(formData)
+
   return (
     <div className="min-h-screen mt-20">
       <div className="flex p-3 justify-center gap-20 items-center  max-w-3xl mx-auto flex-col md:flex-row md:items-center">
@@ -46,7 +48,7 @@ export default function SingUp() {
               <Button className='w-1/2 h-10 hidden sm:inline'  type="submit" variant='primary' color='gray' size='sm' outline pill rounded>Sing Up</Button>
              </form>
              <div>
-                <p className="text-xs my-3 font-medium">Already have an account? <Link to='/sign-in' className="text-blue-5 00">Sign In</Link></p>
+                <p className="text-xs my-3 font-medium">Already have an account? <Link to='/sign-in' className="text-blue-500">Sign In</Link></p>
              </div>
         </div>
       </div>
