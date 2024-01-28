@@ -23,13 +23,14 @@ const createUserSingUp = async (req, res, next) => {
             email
         });
         const savedUser = await newUser.save();
-        res.json(savedUser);
-        res.json({ msg: "User created successfully" });
+        // Send response to the client
+        res.status(200).json({ msg: "User created successfully", user: savedUser });
     } catch (err) {
+        // Handle errors
         res.status(500).json({ error: err.message });
-        res.json({ msg: "Error creating user" });
     }
 }
+
 
 // exporting the controller functions
 module.exports =  { createUserSingUp };
