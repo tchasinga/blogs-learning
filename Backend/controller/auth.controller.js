@@ -16,4 +16,5 @@ const createUserSingUp = async (req, res) => {
 // exporting the controller functions
 module.exports = {
   createUserSingUp,
+
 };
