@@ -4,6 +4,7 @@ import Dashboard from './Pages/Dashboard'
 import About from './Pages/About'
 import SingIn from './Pages/SingIn'
 import SingUp from './Pages/SingUp'
+import Projects from './Pages/Projects'
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/sign-in" element={<SingIn/>} />
           <Route path="/sign-up" element={<SingUp/>} />
+          <Route path="/projects" element={<Projects/>} />
         </Routes>
       </BrowserRouter>
     </div>
