@@ -21,12 +21,22 @@ export default function Header() {
            </Link>
 
            <Navbar.Collapse>
-               <Navbar.Link active>
+               <Navbar.Link>
                     <Link to='/'>Home</Link>
-                    <Link to='/dashboard'>Dashboard</Link>
+              </Navbar.Link>
+
+              <Navbar.Link>
+              <Link to='/dashboard'>Dashboard</Link>
+              </Navbar.Link>
+
+              <Navbar.Link>
                     <Link to='/about'>About</Link>
+              </Navbar.Link>
+              
+              <Navbar.Link>
                     <Link to='/projects'>Projects</Link>
-               </Navbar.Link>
+              </Navbar.Link>
+             
            </Navbar.Collapse>
         </div>
     </Navbar>
