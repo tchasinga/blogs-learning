@@ -28,6 +28,7 @@ const createUserSingUp = async (req, res, next) => {
     } catch (err) {
         // Handle errors
         res.status(500).json({ error: err.message });
+        res.status(500).json({msg: "Error creating user"});
     }
 }
 
