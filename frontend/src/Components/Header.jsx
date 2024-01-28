@@ -6,6 +6,7 @@ export default function Header() {
     <Navbar className='border-b-2'>
         <Link to='/' className=''>
             <span className='text-2xl font-bold'>Blog&apos;s</span>
+            Learnign
         </Link>
     </Navbar>
   )
