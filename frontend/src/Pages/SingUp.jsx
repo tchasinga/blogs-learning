@@ -96,6 +96,7 @@ export default function SingUp() {
              {isSingUpError && <p className="text-red-500 text-xs">
                   <Alert variant='danger' color='red' size='sm' pill rounded>{isSingUpError}</Alert>
               </p>}
+              
             {
               isSingUp && <p className="text-green-500 text-xs">
                 <Alert variant='success' color='green' size='sm' pill rounded>Sing up successfully</Alert>
