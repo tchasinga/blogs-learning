@@ -1,6 +1,7 @@
 import { Button, Navbar, TextInput } from 'flowbite-react'
 import { Link } from 'react-router-dom'
 import { FiSearch } from "react-icons/fi";
+import { FaMoon } from "react-icons/fa";
 
 export default function Header() {
   return (
@@ -13,6 +14,9 @@ export default function Header() {
             <TextInput className='w-96 hidden lg:inline' type='text' rightIcon={FiSearch}  placeholder='Search....' />
         </form>
         <Button className='lg:hidden' variant='primary' color='gray' size='sm' pill rounded><FiSearch/></Button>
+        <div className=''>
+           <Button className='hidden lg:inline' variant='primary' color='gray' size='sm' pill rounded><FaMoon /></Button>
+        </div>
     </Navbar>
   )
 }
