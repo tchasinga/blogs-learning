@@ -14,12 +14,13 @@ export default function Header() {
             <TextInput className='w-96 hidden lg:inline' type='text' rightIcon={FiSearch}  placeholder='Search....' />
         </form>
         <Button className='lg:hidden' variant='primary' color='gray' size='sm' pill rounded><FiSearch/></Button>
-        <div className='flex items-center gap-1 md:order-2'>
+        <div className='flex items-center gap-2 md:order-2'>
            <Button className='w-12 h-10 hidden sm:inline'  variant='primary' color='gray' size='sm' pill rounded><FaMoon /></Button>
            <Link to='/sign-in'>
             <Button className='  sm:inli' variant='primary' color='gray'  rounded>Sign In</Button>
            </Link>
-
+           <Navbar.Toggle className='sm:hidden' />
+          </div>
            <Navbar.Collapse>
                <Navbar.Link>
                     <Link to='/'>Home</Link>
@@ -38,8 +39,6 @@ export default function Header() {
               </Navbar.Link>
              
            </Navbar.Collapse>
-           
-        </div>
     </Navbar>
   )
 }
