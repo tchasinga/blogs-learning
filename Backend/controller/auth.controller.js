@@ -11,7 +11,7 @@ const createUserSingUp = async (req, res, next) => {
         // Check for existing user
         const existingUser = await User.findOne({ email: email });
         if (existingUser) {
-            return res.status(400).json({ msg: "User already exists" });
+            return res.status(400).json({ msg: "User already exists please change your email..." });
         }
         // Create salt & hash
         const salt = await bcrypt.genSalt(10);
