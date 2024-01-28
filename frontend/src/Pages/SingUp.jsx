@@ -1,18 +1,25 @@
 import { Link } from "react-router-dom";
-import {  Button, Label, TextInput , } from 'flowbite-react'
+import {  Alert, Button, Label, TextInput , } from 'flowbite-react'
 import { useState } from "react";
 
 export default function SingUp() {
   const [formData, setFormData] = useState({})
   const [isSingUp, setIsSingUp] = useState(false)
+  const [isSingUpError, setIsSingUpError] = useState(null) 
+  
   const handlerSingupChanges = (e) => {
     e.preventDefault()
     console.log(e.target.value)
-    setFormData({ ...formData, [e.target.id]: e.target.value })
+    setFormData({ ...formData, [e.target.id]: e.target.value.trim() })
   }
   
   
   const handlerSubmitForm =async (e) => {
+    // handling an errors when one of the fields is empty
+    if (!formData.username || !formData.email || !formData.password) {
+      setIsSingUpError('Please fill all fields listed')
+      return
+    }
     e.preventDefault()
     try {
       setIsSingUp(true)
@@ -68,6 +75,9 @@ export default function SingUp() {
              <div>
                 <p className="text-xs my-3 font-medium">Already have an account? <Link to='/sign-in' className="text-blue-500">Sign In</Link></p>
              </div>
+             {isSingUpError && <p className="text-red-500 text-xs">
+                  <Alert variant='danger' color='red' size='sm' pill rounded>{isSingUpError}</Alert>
+              </p>}
         </div>
       </div>
     </div>
