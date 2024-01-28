@@ -19,6 +19,16 @@ export default function Header() {
            <Link to='/sign-in'>
             <Button className='  sm:inli' variant='primary' color='gray'  rounded>Sign In</Button>
            </Link>
+
+           <Navbar.Collapse>
+               <Navbar.Link active>
+                    <Link to='/'>Home</Link>
+                    <Link to='/'>Home</Link>
+                    <Link to='/'>Home</Link>
+                    <Link to='/'>Home</Link>
+                    <Link to='/'>Home</Link>
+               </Navbar.Link>
+           </Navbar.Collapse>
         </div>
     </Navbar>
   )
