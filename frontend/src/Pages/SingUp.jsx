@@ -4,7 +4,7 @@ import {  Label } from 'flowbite-react'
 export default function SingUp() {
   return (
     <div className="min-h-screen mt-20">
-      <div className="flex p-3 max-w-3xl mx-auto flex-col md:flex-row">
+      <div className="flex p-3 max-w-3xl mx-auto flex-col md:flex-row md:items-center">
         {/* Adding first div for left side */}
         <div className="">
         <Link to='/' className=' py-4 font-semibold flex items-center gap-1 dark:text-white text-5xl'>
