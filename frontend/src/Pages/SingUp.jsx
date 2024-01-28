@@ -5,7 +5,7 @@ export default function SingUp() {
 
   const handlerSingupChanges = (e) => {
     e.preventDefault()
-    console.log(e.target.id)
+    console.log(e.target.value)
   }
 
   return (
