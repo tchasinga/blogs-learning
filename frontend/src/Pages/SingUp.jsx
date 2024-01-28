@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-
+import {  Label } from 'flowbite-react'
 
 export default function SingUp() {
   return (
@@ -21,7 +21,15 @@ export default function SingUp() {
         </div>
 
         {/* Adding second div  right side */}
-        <div className=""></div>
+        <div className="">
+             <form>
+              
+              <div className="">
+                <Label value="set your username"/>
+              </div>
+
+             </form>
+        </div>
       </div>
     </div>
   )
