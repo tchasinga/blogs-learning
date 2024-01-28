@@ -3,25 +3,20 @@ const userSchema = new mongoose.Schema(
   {
     username: {
       type: String,
-      required: [true, "Username is required"],
+      required: true,
       unique: true,
       trim: true,
     },
     password: {
       type: String,
-      required: [true, "Password is required"],
+      required: true,
     },
     email: {
       type: String,
-      required: [true, "Email is required"],
+      required: true,
       unique: true,
       trim: true,
     },
-    // role: {
-    //     type: String,
-    //     enum: ["user", "admin"],
-    //     default: "user"
-    // }
   },
   {
     timestamps: true,
