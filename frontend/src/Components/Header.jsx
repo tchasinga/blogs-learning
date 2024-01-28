@@ -1,4 +1,4 @@
-import { Navbar, TextInput } from 'flowbite-react'
+import { Button, Navbar, TextInput } from 'flowbite-react'
 import { Link } from 'react-router-dom'
 import { FiSearch } from "react-icons/fi";
 
@@ -12,7 +12,7 @@ export default function Header() {
         <form>
             <TextInput className='w-96 lg:inline' type='text' rightIcon={FiSearch}  placeholder='Search....' />
         </form>
-        
+        <Button className='' variant='primary' size='sm' rounded><FiSearch/></Button>
     </Navbar>
   )
 }
