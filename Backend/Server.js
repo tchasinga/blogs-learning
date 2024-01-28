@@ -16,5 +16,7 @@ app.listen(3000, () => {
 
 // Middlewares to allow CORS
 app.use(cors({
-    origin: '*'
-}));
+    origin: '*',
+    credentials: true
+})
+);
