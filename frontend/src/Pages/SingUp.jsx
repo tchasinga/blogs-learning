@@ -13,10 +13,21 @@ export default function SingUp() {
   
   const handlerSubmitForm =async (e) => {
     e.preventDefault()
-    
+    try {
+      const response = await fetch('http://localhost:5000/api/auth/singupuser', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      })
+      const data = await response.json()
+      console.log(data)
+    } catch (error) {
+      console.log(error)
+    }
+
   }
 
-  return (
+  return (  
     <div className="min-h-screen mt-20">
       <div className="flex p-3 justify-center gap-20 items-center  max-w-3xl mx-auto flex-col md:flex-row md:items-center">
         {/* Adding first div for left side */}
