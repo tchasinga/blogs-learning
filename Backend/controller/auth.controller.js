@@ -24,10 +24,10 @@ const createUserSingUp = async (req, res, next) => {
         });
         const savedUser = await newUser.save();
         res.json(savedUser);
-        res.status(200).json({ msg: "User created successfully" });
+        res.json({ msg: "User created successfully" });
     } catch (err) {
         res.status(500).json({ error: err.message });
-        res.status(500).json({ msg: "Error creating user" });
+        res.json({ msg: "Error creating user" });
     }
 }
 
