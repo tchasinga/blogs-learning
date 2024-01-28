@@ -1,5 +1,6 @@
 import { Navbar, TextInput } from 'flowbite-react'
 import { Link } from 'react-router-dom'
+import { FiSearch } from "react-icons/fi";
 
 export default function Header() {
   return (
@@ -9,7 +10,7 @@ export default function Header() {
             <p>Learning</p>
         </Link>
         <form>
-            <TextInput className='w-96' placeholder='Search' />
+            <TextInput className='w-96' type='text' rightIcon={FiSearch}  placeholder='Search' />
         </form>
     </Navbar>
   )
