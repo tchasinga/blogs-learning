@@ -1,9 +1,11 @@
 import { Button, Navbar, TextInput } from 'flowbite-react'
-import { Link } from 'react-router-dom'
+import { Link , useLocation } from 'react-router-dom'
 import { FiSearch } from "react-icons/fi";
 import { FaMoon } from "react-icons/fa";
 
 export default function Header() {
+  const location = useLocation();
+
   return (
     <Navbar className='border-b-2'>
         <Link to='/' className='self-center whitespace-nowrap text-sm sm:text-xl font-semibold flex items-center gap-1 dark:text-white'>
@@ -42,3 +44,4 @@ export default function Header() {
     </Navbar>
   )
 }
+ 
