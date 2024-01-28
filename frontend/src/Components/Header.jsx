@@ -17,7 +17,7 @@ export default function Header() {
         </form>
         <Button className='lg:hidden' variant='primary' color='gray' size='sm' pill rounded><FiSearch/></Button>
         <div className='flex items-center gap-2 md:order-2'>
-           <Button className='w-12 h-10 hidden sm:inline'  variant='primary' color='gray' size='sm' pill rounded><FaMoon /></Button>
+           <Button className='w-12 h-10 hidden sm:inline'  variant='primary' color='gray' size='sm' outline pill rounded><FaMoon /></Button>
            <Link to='/sign-in'>
             <Button className='  sm:inli' variant='primary' color='gray'  rounded>Sign In</Button>
            </Link>
