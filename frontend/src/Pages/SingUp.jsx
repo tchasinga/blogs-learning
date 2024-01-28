@@ -2,6 +2,12 @@ import { Link } from "react-router-dom";
 import {  Button, Label, TextInput , } from 'flowbite-react'
 
 export default function SingUp() {
+
+  const handlerSingupChanges = (e) => {
+    e.preventDefault()
+    console.log(e.target.id)
+  }
+
   return (
     <div className="min-h-screen mt-20">
       <div className="flex p-3 justify-center gap-20 items-center  max-w-3xl mx-auto flex-col md:flex-row md:items-center">
@@ -23,22 +29,22 @@ export default function SingUp() {
               
               <div className="">
                 <Label value="Set your username"/>
-                <TextInput className='w-96' type='text' placeholder='Username'  id="username"/>
+                <TextInput className='w-96' type='text' placeholder='Username'  id="username"  onChange={handlerSingupChanges}/>
               </div>
 
               <div className="">
                 <Label value="Set your email"/>
-                <TextInput className=' ' type='email' placeholder='Username'  id="email"/>
+                <TextInput className=' ' type='email' placeholder='Username'  id="email" onChange={handlerSingupChanges}/>
               </div>
 
               <div className="">
                 <Label value="Set your password"/>
-                <TextInput className=' ' type='password' placeholder='Username'  id="password"/>
+                <TextInput className=' ' type='password' placeholder='Username'  id="password" onChange={handlerSingupChanges}/>
               </div>
               <Button className='w-1/2 h-10 hidden sm:inline'  type="submit" variant='primary' color='gray' size='sm' outline pill rounded>Sing Up</Button>
              </form>
              <div>
-                <p className="text-xs my-3 font-medium">Already have an account? <Link to='/sign-in' className="text-blue-500">Sign In</Link></p>
+                <p className="text-xs my-3 font-medium">Already have an account? <Link to='/sign-in' className="text-blue-5 00">Sign In</Link></p>
              </div>
         </div>
       </div>
