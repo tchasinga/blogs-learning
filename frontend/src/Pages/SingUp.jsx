@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import {  Alert, Button, Label, TextInput , } from 'flowbite-react'
+import {  Alert, Button, Label, Spinner, TextInput , } from 'flowbite-react'
 import { useState } from "react";
 
 export default function SingUp() {
@@ -14,27 +14,31 @@ export default function SingUp() {
   }
   
   
-  const handlerSubmitForm =async (e) => {
+  const handlerSubmitForm = async (e) => {
     // handling an errors when one of the fields is empty
     if (!formData.username || !formData.email || !formData.password) {
       setIsSingUpError('Please fill all fields listed')
       return
     }
     e.preventDefault()
+    let data;
     try {
       setIsSingUp(true)
+      setIsSingUpError(null)
       const response = await fetch('http://localhost:5000/api/auth/singupuser', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
       })
-      const data = await response.json()
+      data = await response.json()
+      if(data.success === false){
+        return setIsSingUpError(data.message)
+      }
       console.log(data)
     } catch (error) {
-      setIsSingUp(false)
+      setIsSingUp(false)    
       console.log(error)
     }
-
   }
 
   return (  
@@ -70,7 +74,17 @@ export default function SingUp() {
                 <Label value="Set your password"/>
                 <TextInput className=' ' type='password' placeholder='Username'  id="password" onChange={handlerSingupChanges}/>
               </div>
-              <Button className='w-1/2 h-10  sm:inline'  type="submit" variant='primary' color='gray' size='sm' disabled={isSingUp}  outline pill rounded>{isSingUp ?  'Waiting...' : 'Sing up'}</Button>
+              <Button className='w-1/2 h-10  sm:inline'  type="submit" variant='primary' color='gray' size='sm' disabled={isSingUp}  outline pill rounded>
+                {isSingUp ? (
+                <>
+                    <Spinner className='mr-2' size='sm' />
+                    <span>Waiting...</span>
+                </>
+                ) : (
+                  <span>Sing Up</span>
+                )
+                 }
+                </Button>
              </form>
              <div>
                 <p className="text-xs my-3 font-medium">Already have an account? <Link to='/sign-in' className="text-blue-500">Sign In</Link></p>
@@ -78,6 +92,12 @@ export default function SingUp() {
              {isSingUpError && <p className="text-red-500 text-xs">
                   <Alert variant='danger' color='red' size='sm' pill rounded>{isSingUpError}</Alert>
               </p>}
+            {/* {
+              isSingUp && <p className="text-green-500 text-xs">
+                <Alert variant='success' color='green' size='sm' pill rounded>Sing up successfully</Alert>
+              </p>
+            } */}
+
         </div>
       </div>
     </div>
