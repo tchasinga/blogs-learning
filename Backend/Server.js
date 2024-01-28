@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 require("dotenv").config();
 const cors = require('cors');
+const userRoutes = require('./routes/user.route.js');
 
 // Initialize the app
 const app = express();
@@ -35,3 +36,6 @@ mongoose
     console.error("MongoDB connection error:", err);
     process.exit(1);
   });
+
+// APis routes 
+app.use("/api/auth/", userRoutes);
