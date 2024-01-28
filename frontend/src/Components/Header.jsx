@@ -23,10 +23,9 @@ export default function Header() {
            <Navbar.Collapse>
                <Navbar.Link active>
                     <Link to='/'>Home</Link>
-                    <Link to='/'>Home</Link>
-                    <Link to='/'>Home</Link>
-                    <Link to='/'>Home</Link>
-                    <Link to='/'>Home</Link>
+                    <Link to='/dashboard'>Dashboard</Link>
+                    <Link to='/about'>About</Link>
+                    <Link to='/projects'>Projects</Link>
                </Navbar.Link>
            </Navbar.Collapse>
         </div>
