@@ -4,6 +4,7 @@ import { useState } from "react";
 
 export default function SingUp() {
   const [formData, setFormData] = useState({})
+  const [isSingUp, setIsSingUp] = useState(false)
   const handlerSingupChanges = (e) => {
     e.preventDefault()
     console.log(e.target.value)
@@ -14,6 +15,7 @@ export default function SingUp() {
   const handlerSubmitForm =async (e) => {
     e.preventDefault()
     try {
+      setIsSingUp(true)
       const response = await fetch('http://localhost:5000/api/auth/singupuser', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -22,6 +24,7 @@ export default function SingUp() {
       const data = await response.json()
       console.log(data)
     } catch (error) {
+      setIsSingUp(false)
       console.log(error)
     }
 
@@ -48,7 +51,7 @@ export default function SingUp() {
               
               <div className="">
                 <Label value="Set your username"/>
-                <TextInput className='w-96' type='text' placeholder='Username'  id="username"  onChange={handlerSingupChanges}/>
+                <TextInput className='w-96' type='text' placeholder='Username' required="fill this field"  id="username"  onChange={handlerSingupChanges}/>
               </div>
 
               <div className="">
@@ -60,7 +63,7 @@ export default function SingUp() {
                 <Label value="Set your password"/>
                 <TextInput className=' ' type='password' placeholder='Username'  id="password" onChange={handlerSingupChanges}/>
               </div>
-              <Button className='w-1/2 h-10 hidden sm:inline'  type="submit" variant='primary' color='gray' size='sm' outline pill rounded>Sing Up</Button>
+              <Button className='w-1/2 h-10  sm:inline'  type="submit" variant='primary' color='gray' size='sm' disabled={isSingUp}  outline pill rounded>{isSingUp ?  'Waiting...' : 'Sing up'}</Button>
              </form>
              <div>
                 <p className="text-xs my-3 font-medium">Already have an account? <Link to='/sign-in' className="text-blue-500">Sign In</Link></p>
