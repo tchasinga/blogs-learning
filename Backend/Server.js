@@ -18,6 +18,17 @@ app.use(cors({
 })
 );
 
+// Adding middleware to all get, post, put, delete requests  errors handling
+app.use((err, req, res, next) => {
+    const statusCode = err.statusCode || 500;
+    const message = err.message || "Internal error server...!!!";
+    return res.status(statusCode).json({
+      success: false,
+      statusCode,
+      message,
+    });
+  });
+
 
 // Connecting to MongoDB is required 
 const urlmongoDB = process.env.MONGO_URL;
