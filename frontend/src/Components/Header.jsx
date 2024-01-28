@@ -14,10 +14,10 @@ export default function Header() {
             <TextInput className='w-96 hidden lg:inline' type='text' rightIcon={FiSearch}  placeholder='Search....' />
         </form>
         <Button className='lg:hidden' variant='primary' color='gray' size='sm' pill rounded><FiSearch/></Button>
-        <div className=''>
+        <div className='flex items-center gap-1'>
            <Button className='w-12 h-10 hidden sm:inline'  variant='primary' color='gray' size='sm' pill rounded><FaMoon /></Button>
            <Link to='/sign-in'>
-            <Button className='w-12 h-10 hidden sm:inline' variant='primary' color='gray' size='sm' pill rounded>Login</Button>
+            <Button className='  sm:inli' variant='primary' color='gray'  rounded>Sign In</Button>
            </Link>
         </div>
     </Navbar>
