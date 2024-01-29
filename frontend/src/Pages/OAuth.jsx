@@ -27,7 +27,9 @@ export default function OAuth() {
         })
         const data = await res.json()
         console.log(data)  
-        dispatch(singInSuccess(data))
+         if(res.ok){
+            dispatch(singInSuccess(data))
+         }
         } catch (error) {
         console.log(error)
         }
