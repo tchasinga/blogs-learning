@@ -34,7 +34,9 @@ const createUserSingUp = async (req, res, next) => {
 
 
 // Adding a sing-in for user 
-const createUserSingInUser = async (req, res, next) =>{}
+const createUserSingInUser = async (req, res, next) =>{
+       
+}
 
 // exporting the controller functions
 module.exports =  { createUserSingUp , createUserSingInUser};
