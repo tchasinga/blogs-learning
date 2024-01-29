@@ -2,9 +2,12 @@ import { Button, Navbar, TextInput } from 'flowbite-react'
 import { Link , useLocation } from 'react-router-dom'
 import { FiSearch } from "react-icons/fi";
 import { FaMoon } from "react-icons/fa";
+import { useSelector } from 'react-redux';
 
 export default function Header() {
   const path = useLocation().pathname;
+  const currentUser = useSelector((state) => state.user && state.user.user.currentUser)
+
 
   return (
     <Navbar className='border-b-2'>
@@ -18,9 +21,17 @@ export default function Header() {
         <Button className='lg:hidden' variant='primary' color='gray' size='sm' pill rounded><FiSearch/></Button>
         <div className='flex items-center gap-2 md:order-2'>
            <Button className='w-12 h-10 hidden sm:inline'  variant='primary' color='gray' size='sm' outline pill rounded><FaMoon /></Button>
-           <Link to='/sign-in' outline="">
-            <Button className='  sm:inli' variant='primary' color='gray' outline  rounded>Sign In</Button>
-           </Link>
+           {
+                currentUser ? (
+                  <Link to='/dashboard'>
+                      <img src={currentUser.user.ProfilePhoto} alt='profile' className='w-10 h-10 rounded-full'/>
+                  </Link>
+                ) : (
+                  <Link to='/singin'>
+                      <Button variant='primary' color='gray' size='sm' outline pill rounded>Sing In</Button>
+                  </Link>
+                )
+           }
            <Navbar.Toggle className='sm:hidden' />
           </div>
            <Navbar.Collapse>

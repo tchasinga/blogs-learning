@@ -69,9 +69,36 @@ const createUserSignInUserWithGoogle = async (req, res, next) => {
     const { name, email, googlePhotoUrl } = req.body;
 
     try {
-      
+      const user =  await User.findOne({ email })
+      if(user){
+        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "1d" });
+        const {password : pass, ...user } = user._doc;
+        res
+          .status(200)
+          .cookie("access_token", token, { httpOnly: true })
+          .json({ msg: "The user is signed in successfully", user });
+      } else {
+        const generatedPassword = Math.random().toString(36).slice(-8);
+        const hashedPassword = await bcrypt.hashSync(generatedPassword, 10);
+        const newUser = new User({
+          username: name,
+          password: hashedPassword,
+          email,
+          ProfilePhoto: googlePhotoUrl
+        });
+         await newUser.save();
+        const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET, { expiresIn: "1d" });
+        const {password : pass, ...user } = newUser._doc;
+        res
+          .status(200)
+          .cookie("access_token", token, { httpOnly: true })
+          .json({ msg: "The user is signed in successfully", user });
+
+
+
+      }
     } catch (error) {
-      
+      next(error);
     }
 }
 
