@@ -13,6 +13,10 @@ export default function OAuth() {
         const resultsFromGoogle = await signInWithPopup(auth, provider)
         console.log(resultsFromGoogle)
 
+        const res = await fetch('http://localhost:5000/api/auth/google', {
+            
+        })
+      
         } catch (error) {
         console.log(error)
         }
