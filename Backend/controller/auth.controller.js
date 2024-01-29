@@ -64,5 +64,38 @@ const createUserSignInUser = async (req, res, next) => {
     }
   };
 
+  // Adding a sign-in for user with google
+const createUserSignInUserWithGoogle = async (req, res, next) => {
+    const { name, email, googlePhotoUrl } = req.body;
+    if (!name || !email) {
+      return res.status(400).json({ msg: "Please fill all the text field" });
+    }
+    try {
+      const validUser = await User.findOne({ email });
+      if (validUser) {
+        const token = jwt.sign({ id: validUser._id }, process.env.JWT_SECRET, { expiresIn: "1d" });
+        const {password : pass, ...user } = validUser._doc;
+        return res
+          .status(200)
+          .cookie("access_token", token, { httpOnly: true })
+          .json({ msg: "The user is signed in successfully", user });
+      }
+      const newUser = new User({
+        username: name,
+        email,
+        googlePhotoUrl,
+      });
+      const savedUser = await newUser.save();
+      const token = jwt.sign({ id: savedUser._id }, process.env.JWT_SECRET, { expiresIn: "1d" });
+      const {password : pass, ...user } = savedUser._doc;
+      res
+        .status(200)
+        .cookie("access_token", token, { httpOnly: true })
+        .json({ msg: "The user is signed in successfully", user });
+    } catch (error) {
+      next(error);
+    }
+}
+
 // exporting the controller functions
-module.exports = { createUserSingUp, createUserSignInUser };
+module.exports = { createUserSingUp, createUserSignInUser , createUserSignInUserWithGoogle};
