@@ -49,7 +49,7 @@ export default function SingIn() {
     <div className="min-h-screen mt-20">
       <div className="flex p-3 justify-center gap-20 items-center  max-w-3xl mx-auto flex-col md:flex-row md:items-center">
         {/* Adding first div for left side */}
-        <div className="">
+        <div className="flex-1">
         <Link to='/' className=' py-4 font-semibold flex items-center gap-1 dark:text-white text-5xl'>
             <span className='font-normal px-2 py-1 rounded-xl bg-gradient-to-r font-bold from-indigo-500 via-purple-100 to-pink-100'>Blog&apos;s</span>
             <p>Learning</p>
@@ -61,8 +61,8 @@ export default function SingIn() {
         </div>
 
         {/* Adding second div  right side */}
-        <div className="">
-             <form className="flex flex-col gap-3" onSubmit={handlerSubmitForm}>
+        <div className="flex-1">
+             <form className="flex flex-col gap-3 flex-1" onSubmit={handlerSubmitForm}>
               
               {/* <div className="">
                 <Label value="Set your username"/>
@@ -71,12 +71,12 @@ export default function SingIn() {
 
               <div className="">
                 <Label value="Set your email"/>
-                <TextInput className=' ' type='email' placeholder='Username'  id="email" onChange={handlerSingupChanges}/>
+                <TextInput className=' ' type='email' placeholder='email user'  id="email" onChange={handlerSingupChanges}/>
               </div>
 
               <div className="">
                 <Label value="Set your password"/>
-                <TextInput className=' ' type='password' placeholder='Username'  id="password" onChange={handlerSingupChanges}/>
+                <TextInput className=' ' type='password' placeholder='*************'  id="password" onChange={handlerSingupChanges}/>
               </div>
               <Button className='w-1/2 h-10  sm:inline'  type="submit" variant='primary' color='gray' size='sm' disabled={isSingUp}  outline pill rounded>
                 {isSingUp ? (
@@ -91,7 +91,7 @@ export default function SingIn() {
                 </Button>
              </form>
              <div>
-                <p className="text-xs my-3 font-medium">Already have an account? <Link to='/sign-in' className="text-blue-500">Sign In</Link></p>
+                <p className="text-xs my-3 font-medium">Already have an account? <Link to='/sign-up' className="text-blue-500">Sign up</Link></p>
              </div>
              {isSingUpError && <p className="text-red-500 text-xs">
                   <Alert variant='danger' color='red' size='sm' pill rounded>{isSingUpError}</Alert>
@@ -99,7 +99,7 @@ export default function SingIn() {
               
             {
               isSingUp && <p className="text-green-500 text-xs">
-                <Alert variant='success' color='green' size='sm' pill rounded>Sing up successfully</Alert>
+                <Alert variant='success' color='green' size='sm' pill rounded>Sing in successfully</Alert>
               </p>
             }
 
