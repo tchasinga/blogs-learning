@@ -6,7 +6,7 @@ const { createUserSingUp, createUserSignInUser ,createUserSignInUserWithGoogle }
 // Create a new user routes
 router.post("/singupuser", createUserSingUp);
 router.post("/singinuser", createUserSignInUser)
-router.post("/google", createUserSignInUserWithGoogle)
+router.post("/googleuser", createUserSignInUserWithGoogle)
 
 
 module.exports = router;

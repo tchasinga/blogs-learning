@@ -49,7 +49,7 @@ export default function Header() {
                       
                  </Dropdown>
                 ) : (
-                  <Link to='/singin'>
+                  <Link to='/sign-in'>
                       <Button variant='primary' color='gray' size='sm' outline pill rounded>Sing In</Button>
                   </Link>
                 )
