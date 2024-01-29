@@ -1,11 +1,20 @@
 import { Button } from 'flowbite-react'
 import { FcGoogle } from "react-icons/fc";
-import {GoogleAuthProvider} from 'firebase/auth'
+import {GoogleAuthProvider, signInWithPopup , getAuth} from 'firebase/auth'
 
 export default function OAuth() {
+    const auth = getAuth()
     const handlerGoogleClicker = async () => {
         const provider = new GoogleAuthProvider()
         provider.setCustomParameters({ prompt: 'select_account' })
+
+        try {
+        const resultsFromGoogle = await signInWithPopup(auth, provider)
+        console.log(resultsFromGoogle)
+        
+        } catch (error) {
+        console.log(error)
+        }
     }
 
   return (
