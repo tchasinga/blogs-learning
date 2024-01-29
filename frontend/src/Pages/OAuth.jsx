@@ -5,7 +5,7 @@ export default function OAuth() {
   return (
     <Button type='button'>
        <FcGoogle className='text-2xl'/>
-       <text className='ml-2'>Google</text>
+       <text className='ml-2'>Hang on with Google</text>
     </Button>
   )
 }
