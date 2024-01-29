@@ -6,8 +6,7 @@ import { useSelector } from 'react-redux';
 
 export default function Header() {
   const path = useLocation().pathname;
-  const currentUser = useSelector((state) => state.user && state.user.user.currentUser)
-
+  const currentUser = useSelector((state) => state.user?.user?.currentUser);
 
   return (
     <Navbar className='border-b-2'>
@@ -24,11 +23,11 @@ export default function Header() {
            {
                 currentUser ? (
                  <Dropdown className='' arrowIcon={false} inline label={
-                    <Avatar className='w-10 h-10' img={currentUser.user.ProfilePhoto} />
+                  <Avatar className='w-10 h-10' img={currentUser?.user?.ProfilePhoto} />
                  }>
                     <Dropdown.Header>
-                        <p className='text-sm'>Hello, {currentUser.user.username}</p>
-                        <p className='truncate'>{currentUser.user.email}</p>
+                    <p className='text-sm'>Hello, {currentUser?.user?.username}</p>
+                    <p className='truncate'>{currentUser?.user?.email}</p>
                     </Dropdown.Header>
 
                       <Dropdown.Item>

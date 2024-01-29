@@ -94,7 +94,7 @@ export default function SingIn() {
                 )
                  }
                 </Button>
-                <OAuth/>
+                 <OAuth/> 
              </form>
              <div>
                 <p className="text-xs my-3 font-medium">Already have an account? <Link to='/sign-up' className="text-blue-500">Sign up</Link></p>

@@ -64,20 +64,52 @@ const createUserSignInUser = async (req, res, next) => {
     }
   };
 
-  // Adding a sign-in for user with google
+
+// Function to handle user sign-in with Google
 const createUserSignInUserWithGoogle = async (req, res, next) => {
-    const { name, email, googlePhotoUrl } = req.body;
+  const { name, email, googlePhotoUrl } = req.body;
+
   try {
-    const user = User.findOne({ email });
-    if(user){
-       
-    }else{
+    // Check if the user already exists
+    let user = await User.findOne({ email });
+
+    if (user) {
+      // If user exists, sign them in
+      const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "1d" });
+      const { password, ...userData } = user._doc;
+
+      // Set the JWT token as a cookie and send response
+      res
+        .status(200)
+        .cookie("access_token", token, { httpOnly: true })
+        .json({ msg: "User signed in successfully", user: userData });
+    } else {
+      // If user doesn't exist, create a new user
+      const generatedPassword = Math.random().toString(36).slice(-8);
+      const hashPassword = await bcrypt.hash(generatedPassword, 10);
       
+      const newUser = new User({
+        username: name,
+        password: hashPassword,
+        email,
+        profilePhoto: googlePhotoUrl, // Use camelCase for consistency
+      });
+
+      await newUser.save();
+      const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET, { expiresIn: "1d" });
+      const { password, ...userData } = newUser._doc;
+
+      // Set the JWT token as a cookie and send response
+      res
+        .status(200)
+        .cookie("access_token", token, { httpOnly: true })
+        .json({ msg: "User signed in successfully", user: userData });
     }
   } catch (error) {
+    // Pass the error to the error handling middleware
     next(error);
-  }   
-}
+  }
+};
 
 // exporting the controller functions
 module.exports = { createUserSingUp, createUserSignInUser , createUserSignInUserWithGoogle};
