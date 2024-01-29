@@ -1,6 +1,7 @@
 import { Link , useNavigate} from "react-router-dom";
 import {  Alert, Button, Label, Spinner, TextInput , } from 'flowbite-react'
 import { useState } from "react";
+import OAuth from "./OAuth";
 
 
 export default function SingUp() {
@@ -73,7 +74,7 @@ export default function SingUp() {
                 <Label value="Set your email"/>
                 <TextInput className=' ' type='email' placeholder='Username'  id="email" onChange={handlerSingupChanges}/>
               </div>
-
+ 
               <div className="">
                 <Label value="Set your password"/>
                 <TextInput className=' ' type='password' placeholder='Username'  id="password" onChange={handlerSingupChanges}/>
@@ -89,6 +90,7 @@ export default function SingUp() {
                 )
                  }
                 </Button>
+                <OAuth/>
              </form>
              <div>
                 <p className="text-xs my-3 font-medium">Already have an account? <Link to='/sign-in' className="text-blue-500">Sign In</Link></p>

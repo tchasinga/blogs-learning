@@ -76,7 +76,7 @@ export default function SingIn() {
 
               <div className="">
                 <Label value="Set your email"/>
-                <TextInput className=' ' type='email' placeholder='email@gmail.com'  id="email" onChange={handlerSingupChanges}/>
+                <TextInput className='w-96' type='email' placeholder='email@gmail.com'  id="email" onChange={handlerSingupChanges}/>
               </div>
 
               <div className="">
