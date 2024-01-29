@@ -54,11 +54,11 @@ const createUserSignInUser = async (req, res, next) => {
         return next(errorHandler(400, "Please check your information, something is wrong"));
       }
       const token = jwt.sign({ id: validUser._id }, process.env.JWT_SECRET, { expiresIn: "1d" });
-      const {password : pass, ...rest } = validUser._doc;
+      const {password : pass, ...user } = validUser._doc;
       res
         .status(200)
         .cookie("access_token", token, { httpOnly: true })
-        .json({ msg: "The user is signed in successfully", rest });
+        .json({ msg: "The user is signed in successfully", user });
     } catch (error) {
       next(error);
     }

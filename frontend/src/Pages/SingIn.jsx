@@ -13,7 +13,6 @@ export default function SingIn() {
   
   const handlerSingupChanges = (e) => {
     e.preventDefault()
-    console.log(e.target.value)
     setFormData({ ...formData, [e.target.id]: e.target.value.trim() })
   }
   
@@ -45,8 +44,8 @@ export default function SingIn() {
       dispatch(singInSuccess(data))
     } catch (error) {
       setIsSingUp(false)    
-      console.log(error)
       setIsSingUpError(error.message)
+      dispatch(singInFailure(error.message))
     }
   }
 
@@ -99,7 +98,7 @@ export default function SingIn() {
                 <p className="text-xs my-3 font-medium">Already have an account? <Link to='/sign-up' className="text-blue-500">Sign up</Link></p>
              </div>
              {isSingUpError && <p className="text-red-500 text-xs">
-                  <Alert variant='danger' color='red' size='sm' pill rounded>{isSingUpError}</Alert>
+                  <Alert variant='danger' color='red' size='sm' pill rounded>Please check your information</Alert>
               </p>}
               
             {
