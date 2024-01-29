@@ -32,3 +32,5 @@ const userSlice = createSlice({
 })
 
 export const {singInStart, singInSuccess, singInFailure, userLogout} = userSlice.actions
+
+export default userSlice.reducer
