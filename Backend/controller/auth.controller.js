@@ -67,6 +67,12 @@ const createUserSignInUser = async (req, res, next) => {
   // Adding a sign-in for user with google
 const createUserSignInUserWithGoogle = async (req, res, next) => {
     const { name, email, googlePhotoUrl } = req.body;
+
+    try {
+      
+    } catch (error) {
+      
+    }
 }
 
 // exporting the controller functions
