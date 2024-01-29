@@ -60,7 +60,7 @@ const createUserSingInUser = async (req, res, next) => {
         process.env.JWT_SECRET, {expiresIn : '1d'},
         res.status(200).cookie('access_token', token , {
             htttpOnly: true
-        }).json("the user is signin successfully")
+        }).json("the user is signin successfully" , validUser)
     )
   } catch (error) {
     res.error(error);
