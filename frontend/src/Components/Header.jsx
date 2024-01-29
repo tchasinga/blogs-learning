@@ -32,7 +32,7 @@ export default function Header() {
                     </Dropdown.Header>
 
                       <Dropdown.Item>
-                          <Link to='/dashboard'>Dashboard</Link>
+                          <Link to='/dashboard?tab=profile'>Dashboard</Link>
                       </Dropdown.Item>
                       <Dropdown.Item>
                           <Link to='/projects'>Projects</Link>
@@ -40,6 +40,9 @@ export default function Header() {
                       <Dropdown.Item>
                           <Link to='/about'>About</Link>
                       </Dropdown.Item> 
+                      <Dropdown.Item>
+                          <Link to='/profile'>Profile</Link>
+                      </Dropdown.Item>
                  </Dropdown>
                 ) : (
                   <Link to='/singin'>
