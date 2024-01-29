@@ -1,9 +1,11 @@
 import { Link , useNavigate} from "react-router-dom";
+import { useDispatch } from "react-redux";
 import {  Alert, Button, Label, Spinner, TextInput , } from 'flowbite-react'
 import { useState } from "react";
-
+import {singInStart, singInSuccess, singInFailure} from '../redux/user/userSlice.js'
 
 export default function SingIn() {
+  const dispatch = useDispatch()
   const navigate = useNavigate()
   const [formData, setFormData] = useState({})
   const [isSingUp, setIsSingUp] = useState(false)
@@ -25,8 +27,9 @@ export default function SingIn() {
     e.preventDefault()
     let data;
     try {
-      setIsSingUp(true)
-      setIsSingUpError(null)
+      // setIsSingUp(true)
+      // setIsSingUpError(null)
+      dispatch(singInStart())
       const response = await fetch('http://localhost:5000/api/auth/singinuser', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -34,14 +37,16 @@ export default function SingIn() {
       })
       data = await response.json()
       if(data.success === false){
-        return setIsSingUpError(data.message)
+        dispatch(singInFailure(data.message))
       }
       console.log(data)
       setIsSingUp(false)
       navigate('/')
+      dispatch(singInSuccess(data))
     } catch (error) {
       setIsSingUp(false)    
       console.log(error)
+      setIsSingUpError(error.message)
     }
   }
 
