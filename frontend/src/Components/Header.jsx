@@ -1,10 +1,16 @@
-import { Button, Navbar, TextInput } from 'flowbite-react'
+import { Avatar, Button, Dropdown, Navbar, TextInput } from 'flowbite-react'
 import { Link , useLocation } from 'react-router-dom'
 import { FiSearch } from "react-icons/fi";
-import { FaMoon } from "react-icons/fa";
+import { FaMoon , FaSun } from "react-icons/fa";
+import { useSelector, useDispatch } from 'react-redux';
+import {changeTheme} from '../redux/theme/themeSlice.js'
 
 export default function Header() {
+  const dispatch = useDispatch()
   const path = useLocation().pathname;
+  const currentUser = useSelector((state) => state.user?.user?.currentUser);
+  const {theme} = useSelector((state) => state.theme || state.user.theme);  
+
 
   return (
     <Navbar className='border-b-2'>
@@ -17,10 +23,42 @@ export default function Header() {
         </form>
         <Button className='lg:hidden' variant='primary' color='gray' size='sm' pill rounded><FiSearch/></Button>
         <div className='flex items-center gap-2 md:order-2'>
-           <Button className='w-12 h-10 hidden sm:inline'  variant='primary' color='gray' size='sm' outline pill rounded><FaMoon /></Button>
-           <Link to='/sign-in' outline="">
-            <Button className='  sm:inli' variant='primary' color='gray' outline  rounded>Sign In</Button>
-           </Link>
+           <Button className='w-12 h-10 hidden sm:inline'  onClick={() => dispatch(changeTheme())} variant='primary' color='gray' size='sm' outline pill rounded>
+                {theme === 'light' ? <FaMoon /> : <FaSun />}    
+           </Button>
+           {
+                currentUser ? (
+                 <Dropdown className='' arrowIcon={false} inline label={
+                  <Avatar className='w-10 h-10' img={currentUser?.user?.ProfilePhoto} />
+                 }>
+                    <Dropdown.Header>
+                    <p className='text-sm'>Hello, {currentUser?.user?.username}</p>
+                    <p className='truncate'>{currentUser?.user?.email}</p>
+                    </Dropdown.Header>
+
+                      <Dropdown.Item>
+                          <Link to='/dashboard?tab=profile'>Dashboard</Link>
+                      </Dropdown.Item>
+                      <Dropdown.Item>
+                          <Link to='/projects'>Projects</Link>
+                      </Dropdown.Item>
+                      <Dropdown.Item>
+                          <Link to='/profile'>Profile</Link>
+                      </Dropdown.Item>
+                      <Dropdown.Item>
+                          <Link to='/singout'>Sing Out</Link>
+                      </Dropdown.Item>
+                      <Dropdown.Item>
+                          <Link to='/about'>About</Link>
+                      </Dropdown.Item> 
+                      
+                 </Dropdown>
+                ) : (
+                  <Link to='/sign-in'>
+                      <Button variant='primary' color='gray' size='sm' outline pill rounded>Sing In</Button>
+                  </Link>
+                )
+           }
            <Navbar.Toggle className='sm:hidden' />
           </div>
            <Navbar.Collapse>
