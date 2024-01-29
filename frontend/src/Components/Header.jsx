@@ -1,4 +1,4 @@
-import { Button, Navbar, TextInput } from 'flowbite-react'
+import { Avatar, Button, Dropdown, Navbar, TextInput } from 'flowbite-react'
 import { Link , useLocation } from 'react-router-dom'
 import { FiSearch } from "react-icons/fi";
 import { FaMoon } from "react-icons/fa";
@@ -23,9 +23,24 @@ export default function Header() {
            <Button className='w-12 h-10 hidden sm:inline'  variant='primary' color='gray' size='sm' outline pill rounded><FaMoon /></Button>
            {
                 currentUser ? (
-                  <Link to='/dashboard'>
-                      <img src={currentUser.user.ProfilePhoto} alt='profile' className='w-10 h-10 rounded-full'/>
-                  </Link>
+                 <Dropdown className='' arrowIcon={false} inline label={
+                    <Avatar className='w-10 h-10' img={currentUser.user.ProfilePhoto} />
+                 }>
+                    <Dropdown.Header>
+                        <p className='text-sm'>Hello, {currentUser.user.username}</p>
+                        <p className='truncate'>{currentUser.user.email}</p>
+                    </Dropdown.Header>
+
+                      <Dropdown.Item>
+                          <Link to='/dashboard'>Dashboard</Link>
+                      </Dropdown.Item>
+                      <Dropdown.Item>
+                          <Link to='/projects'>Projects</Link>
+                      </Dropdown.Item>
+                      <Dropdown.Item>
+                          <Link to='/about'>About</Link>
+                      </Dropdown.Item> 
+                 </Dropdown>
                 ) : (
                   <Link to='/singin'>
                       <Button variant='primary' color='gray' size='sm' outline pill rounded>Sing In</Button>
