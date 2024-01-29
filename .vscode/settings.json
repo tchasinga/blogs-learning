@@ -5,5 +5,8 @@
         "markupPreview": true,
         "codeSource": true,
         "codeOutput": true
+    },
+    "editor.codeActionsOnSave": {
+        
     }
 }
