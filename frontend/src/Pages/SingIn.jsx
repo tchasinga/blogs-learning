@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import {  Alert, Button, Label, Spinner, TextInput , } from 'flowbite-react'
 import { useState } from "react";
 import {singInStart, singInSuccess, singInFailure} from '../redux/user/userSlice.js'
+import OAuth from "./OAuth.jsx";
 
 export default function SingIn() {
   const dispatch = useDispatch()
@@ -93,6 +94,7 @@ export default function SingIn() {
                 )
                  }
                 </Button>
+                <OAuth/>
              </form>
              <div>
                 <p className="text-xs my-3 font-medium">Already have an account? <Link to='/sign-up' className="text-blue-500">Sign up</Link></p>
