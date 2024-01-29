@@ -56,12 +56,16 @@ const createUserSingInUser = async (req, res, next) => {
       );
     }
     const token = jwt.sign(
-        {id: validUser._id},
-        process.env.JWT_SECRET, {expiresIn : '1d'},
-        res.status(200).cookie('access_token', token , {
-            htttpOnly: true
-        }).json("the user is signin successfully" , validUser)
-    )
+      { id: validUser._id },
+      process.env.JWT_SECRET,
+      { expiresIn: "1d" },
+      res
+        .status(200)
+        .cookie("access_token", token, {
+          htttpOnly: true,
+        })
+        .json("the user is signin successfully", validUser)
+    );
   } catch (error) {
     res.error(error);
   }
