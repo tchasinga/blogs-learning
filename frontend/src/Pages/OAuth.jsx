@@ -14,8 +14,14 @@ export default function OAuth() {
         console.log(resultsFromGoogle)
 
         const res = await fetch('http://localhost:5000/api/auth/google', {
-            
-        })
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                name: resultsFromGoogle.user.displayName,
+                email: resultsFromGoogle.user.email,
+                password: resultsFromGoogle.user.uid,
+            })
+        })  
       
         } catch (error) {
         console.log(error)
