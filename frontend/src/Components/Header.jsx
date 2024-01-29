@@ -38,11 +38,15 @@ export default function Header() {
                           <Link to='/projects'>Projects</Link>
                       </Dropdown.Item>
                       <Dropdown.Item>
-                          <Link to='/about'>About</Link>
-                      </Dropdown.Item> 
-                      <Dropdown.Item>
                           <Link to='/profile'>Profile</Link>
                       </Dropdown.Item>
+                      <Dropdown.Item>
+                          <Link to='/singout'>Sing Out</Link>
+                      </Dropdown.Item>
+                      <Dropdown.Item>
+                          <Link to='/about'>About</Link>
+                      </Dropdown.Item> 
+                      
                  </Dropdown>
                 ) : (
                   <Link to='/singin'>
