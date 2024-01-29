@@ -35,7 +35,12 @@ const createUserSingUp = async (req, res, next) => {
 
 // Adding a sing-in for user 
 const createUserSingInUser = async (req, res, next) =>{
-       
+    const {username, password} = req.body;
+
+    if(!username || !password || username === '' || password === ''){
+        return res.status(400).json({msg: "Please fill all the text field"})
+    }
+    
 }
 
 // exporting the controller functions
