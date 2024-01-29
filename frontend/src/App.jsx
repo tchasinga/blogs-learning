@@ -7,6 +7,7 @@ import SingUp from './Pages/SingUp'
 import Projects from './Pages/Projects'
 import Header from './Components/Header'
 import FooterCom from './Components/Footer'
+import PrivateRoom from './Components/PrivateRoom'
 
 function App() {
 
@@ -16,12 +17,18 @@ function App() {
          <Header />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/dashboard" element={<Dashboard />} /> 
-          <Route path="*" element={<h1>Not Found</h1>} />
           <Route path="/about" element={<About />} />
           <Route path="/sign-in" element={<SingIn/>} />
           <Route path="/sign-up" element={<SingUp/>} />
           <Route path="/projects" element={<Projects/>} />
+
+          <Route element={<PrivateRoom />}>
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/profile" element={<Dashboard />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/signout" element={<SingIn />} />
+        </Route>
         </Routes>
         <FooterCom />
       </BrowserRouter>
