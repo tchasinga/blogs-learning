@@ -27,8 +27,8 @@ export default function SingIn() {
     e.preventDefault()
     let data;
     try {
-      // setIsSingUp(true)
-      // setIsSingUpError(null)
+      setIsSingUp(true)
+      setIsSingUpError(null)
       dispatch(singInStart())
       const response = await fetch('http://localhost:5000/api/auth/singinuser', {
         method: 'POST',
