@@ -2,9 +2,12 @@ import { Button } from 'flowbite-react'
 import { FcGoogle } from "react-icons/fc";
 import {GoogleAuthProvider, signInWithPopup , getAuth} from 'firebase/auth'
 import app from '../firebase';
+import { useDispatch } from "react-redux";
+import {singInSuccess} from '../redux/user/userSlice.js'
 
 export default function OAuth() {
     const auth = getAuth(app)
+    const dispatch = useDispatch()
     const handlerGoogleClicker = async () => {
         const provider = new GoogleAuthProvider()
         provider.setCustomParameters({ prompt: 'select_account' })
@@ -19,10 +22,12 @@ export default function OAuth() {
             body: JSON.stringify({
                 name: resultsFromGoogle.user.displayName,
                 email: resultsFromGoogle.user.email,
-                password: resultsFromGoogle.user.uid,
+                googlePhotoUrl: resultsFromGoogle.user.photoURL,
             })
-        })  
-      
+        })
+        const data = await res.json()
+        console.log(data)  
+        dispatch(singInSuccess(data))
         } catch (error) {
         console.log(error)
         }
