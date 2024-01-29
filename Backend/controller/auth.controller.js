@@ -1,6 +1,7 @@
 const bcrypt = require('bcryptjs');
 const User = require('../models/user.model.js');
 const errorHandler = require('../utils/errors.js');
+const jsonwebtoken = require('jsonwebtoken')
 
 const createUserSingUp = async (req, res, next) => {
     try {
@@ -51,9 +52,11 @@ const createUserSingInUser = async (req, res, next) =>{
         if(!validPassword) {
             next(errorHandler(400, "Please check your inforamtion something is wrong"))
         }
+
+
     } catch (error) {
         res.error(error)
-    }
+    } 
 }
 
 // exporting the controller functions
