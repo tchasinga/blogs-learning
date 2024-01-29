@@ -62,7 +62,7 @@ export default function SingIn() {
 
         {/* Adding second div  right side */}
         <div className="flex-1">
-             <form className="flex flex-col gap-3 flex-1" onSubmit={handlerSubmitForm}>
+             <form className="flex flex-col gap-3" onSubmit={handlerSubmitForm}>
               
               {/* <div className="">
                 <Label value="Set your username"/>
@@ -71,7 +71,7 @@ export default function SingIn() {
 
               <div className="">
                 <Label value="Set your email"/>
-                <TextInput className=' ' type='email' placeholder='email user'  id="email" onChange={handlerSingupChanges}/>
+                <TextInput className=' ' type='email' placeholder='email@gmail.com'  id="email" onChange={handlerSingupChanges}/>
               </div>
 
               <div className="">
