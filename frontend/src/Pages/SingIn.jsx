@@ -64,10 +64,10 @@ export default function SingIn() {
         <div className="">
              <form className="flex flex-col gap-3" onSubmit={handlerSubmitForm}>
               
-              <div className="">
+              {/* <div className="">
                 <Label value="Set your username"/>
                 <TextInput className='w-96' type='text' placeholder='Username' required="fill this field"  id="username"  onChange={handlerSingupChanges}/>
-              </div>
+              </div> */}
 
               <div className="">
                 <Label value="Set your email"/>
@@ -85,7 +85,7 @@ export default function SingIn() {
                     <span>Waiting...</span>
                 </>
                 ) : (
-                  <span>Sing Up</span>
+                  <span>Sing in</span>
                 )
                  }
                 </Button>
