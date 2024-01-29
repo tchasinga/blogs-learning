@@ -41,6 +41,11 @@ const createUserSingInUser = async (req, res, next) =>{
         return res.status(400).json({msg: "Please fill all the text field"})
     }
     
+    try {
+        
+    } catch (error) {
+        
+    }
 }
 
 // exporting the controller functions
