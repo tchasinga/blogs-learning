@@ -74,7 +74,7 @@ export default function DashProfile() {
       <h1 className='text-center pb-2'>Profile</h1>  
       <form className='flex flex-col'>
             <input type='file' className='hidden'  accept='image/*'  onChange={handlerImageChanges} ref={filePickerRef}/>
-            <div className='w-32 h-32 self-center cursor-pointer relative' onClick={()=> filePickerRef.current.click()}>
+            <div className='w-32 h-32 self-center cursor-pointer relative my-5' onClick={()=> filePickerRef.current.click()}>
 
                {imageFileUploadingProgress && (
               <CircularProgressbar value={imageFileUploadingProgress || 0}
