@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const { createUserUpdatingHim } = require("../controller/user.controller.js");
+const { updateUserProfile } = require("../controller/user.controller.js");
 
 // Create a new user routes
-router.put("/updatinguser/:userId", createUserUpdatingHim);
+router.put("/updatinguser/:userId", updateUserProfile);
 
 module.exports = router;

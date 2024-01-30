@@ -17,4 +17,3 @@ const verifyUser = async (req, res, next) => {
 
 // Exporting the verifyUser function
 module.exports = verifyUser;
-
