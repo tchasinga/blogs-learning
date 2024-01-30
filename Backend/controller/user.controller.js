@@ -1,11 +1,9 @@
 const User = require("../models/user.model.js");
 
-// creating a controller function to create a new user
-const createUser = async (req, res) => {
- res.json("Hello World");
-}
+// creating a controller function to create a new for updating user profile
+
 
 // exporting the controller functions
 module.exports = {
-  createUser
+  createUserUpdatingHim
 }
