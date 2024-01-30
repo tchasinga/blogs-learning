@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import {useLocation} from "react-router-dom";
+import Dashsidebars from "../Components/Dashsidebars";
+import DashProfile from "../Components/DashProfile";
 
 export default function Dashboard() {
   const location = useLocation();
@@ -16,11 +18,15 @@ export default function Dashboard() {
   return (
     <div>
        {/* Creating side bars in the first place */}
-       <div className=""></div>
+       <div className="">
+        <Dashsidebars />
+       </div>
 
 
        {/* Creating Profile pages... */}
-       <div className=""></div>
+       <div className="">
+        <DashProfile />
+       </div>
     </div>
   )
 }
