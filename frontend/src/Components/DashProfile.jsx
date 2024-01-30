@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import { TextInput, Button } from 'flowbite-react'
 import { useEffect, useRef, useState } from 'react';
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import {app} from '../firebase.js'
+import  app from '../firebase.js'
 
 export default function DashProfile() {
 
@@ -10,6 +10,10 @@ export default function DashProfile() {
   const [imageFile, setImageFile] = useState(null);
   const [imageFileUrl, setImageFileUrl] = useState(null);
   const filePickerRef = useRef( );
+  const [imageFileUploadingProgress, setImageFileUploadingProgress] = useState(0);
+  const [imageFileUploadingErrors, setImageFileUploadingErrors] = useState(false);
+
+  console.log(imageFileUploadingProgress , imageFileUploadingErrors)
 
   const handlerImageChanges = (e) =>{
     const file = e.target.files[0];
@@ -31,6 +35,32 @@ export default function DashProfile() {
 
   // Submitting the updating Image
   const storage = getStorage(app);
+  if (imageFile) {
+    const fileName = new Date().getTime() + imageFile.name;
+    const storageRef = ref(storage, fileName)
+    const uploadTask = uploadBytesResumable(storageRef, imageFile);
+    uploadTask.on(
+      'state_changed',
+      (snapshot) => {
+        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        console.log(`Upload is ${progress}% done`);
+        setImageFileUploadingProgress(Math.round(progress));
+      },
+      (error) => {
+        setImageFileUploadingErrors("Your file must be less than 3 Mo", true);
+        console.log(error); 
+      },
+      () => {
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          console.log('File available at', downloadURL);
+          setImageFileUrl(downloadURL);
+        });
+      }
+    )
+  } else {
+    console.error('imageFile is null or undefined');
+  }
+  
 
   return ( 
     <div className=''>
