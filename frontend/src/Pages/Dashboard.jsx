@@ -25,7 +25,7 @@ export default function Dashboard() {
 
        {/* Creating Profile pages... */}
        <div className="">
-        <DashProfile />
+        {tab === 'profile' && <DashProfile />}
        </div>
     </div>
   )
