@@ -32,8 +32,10 @@ app.use((err, req, res, next) => {
   });
 
 
+  const myLinks = "mongodb+srv://tchasingajacques:jack202050081@blogs-learning.pvex6hi.mongodb.net/blogs-learning?retryWrites=true&w=majority"
+
 // Connecting to MongoDB is required 
-const urlmongoDB = process.env.MONGO_URL;
+const urlmongoDB = process.env.MONGO_URL || myLinks;
 mongoose
   .connect(urlmongoDB, { useNewUrlParser: true, useUnifiedTopology: true })  
   .then(() => {
