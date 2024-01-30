@@ -5,7 +5,6 @@ const jwt = require("jsonwebtoken");
 
 
 // Adding user sing up
-
 const createUserSingUp = async (req, res, next) => {
   try {
     const { username, password, email } = req.body;
