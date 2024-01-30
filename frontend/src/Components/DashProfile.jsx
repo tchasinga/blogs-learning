@@ -1,6 +1,8 @@
 import { useSelector } from 'react-redux';
 import { TextInput, Button } from 'flowbite-react'
 import { useEffect, useRef, useState } from 'react';
+import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import {app} from '../firebase.js'
 
 export default function DashProfile() {
 
@@ -26,6 +28,9 @@ export default function DashProfile() {
   const uploadImage = async () =>{
     console.log('uploading image');
   }
+
+  // Submitting the updating Image
+  const storage = getStorage(app);
 
   return ( 
     <div className=''>
