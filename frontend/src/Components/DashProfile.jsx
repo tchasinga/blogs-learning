@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { TextInput, Button } from 'flowbite-react'
+import { TextInput, Button , Alert } from 'flowbite-react'
 import { useEffect, useRef, useState } from 'react';
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import  app from '../firebase.js'
@@ -11,7 +11,7 @@ export default function DashProfile() {
   const [imageFileUrl, setImageFileUrl] = useState(null);
   const filePickerRef = useRef( );
   const [imageFileUploadingProgress, setImageFileUploadingProgress] = useState(0);
-  const [imageFileUploadingErrors, setImageFileUploadingErrors] = useState(false);
+  const [imageFileUploadingErrors, setImageFileUploadingErrors] = useState(null);
 
   console.log(imageFileUploadingProgress , imageFileUploadingErrors)
 
@@ -29,14 +29,13 @@ export default function DashProfile() {
     }
   }, [imageFile]);
 
+
+
+
   const uploadImage = async () =>{
     console.log('uploading image');
-  }
-
-  // Submitting the updating Image
-  const storage = getStorage(app);
-  if (imageFile) {
-    const fileName = new Date().getTime() + imageFile.name;
+    const storage = getStorage(app);
+    const fileName = new Date().getTime() +  imageFile.name;
     const storageRef = ref(storage, fileName)
     const uploadTask = uploadBytesResumable(storageRef, imageFile);
     uploadTask.on(
@@ -44,23 +43,24 @@ export default function DashProfile() {
       (snapshot) => {
         const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
         console.log(`Upload is ${progress}% done`);
-        setImageFileUploadingProgress(Math.round(progress));
+       setImageFileUploadingProgress(progress.toFixed(0));
       },
       (error) => {
-        setImageFileUploadingErrors("Your file must be less than 3 Mo", true);
+        setImageFileUploadingErrors( "Your file must be less than 3 Mo",true);
         console.log(error); 
       },
-      () => {
+      ()=> {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
           console.log('File available at', downloadURL);
-          setImageFileUrl(downloadURL);
+          setImageFileUrl(downloadURL); 
         });
       }
-    )
-  } else {
-    console.error('imageFile is null or undefined');
+      )
   }
-  
+
+ // Submitting the updating Image
+
+
 
   return ( 
     <div className=''>
@@ -70,6 +70,8 @@ export default function DashProfile() {
             <div className='w-32 h-32 self-center cursor-pointer ' onClick={()=> filePickerRef.current.click()}>   
                 <img src={imageFileUrl || currentUser.user.ProfilePhoto}   className=' rounded-full w-full h-full border-8  border-[lightgray] object-cover '/>
             </div>
+
+            {imageFileUploadingErrors && <Alert type='danger' className='w-full'>{imageFileUploadingErrors}</Alert>}
 
            <div className='mt-5 m-2 flex flex-col gap-3'>
            <TextInput className='w-full' type='text' id='username' label='Username' value={currentUser.user.username} />
