@@ -27,7 +27,7 @@ export default function Dashboard() {
 
 
        {/* Creating Profile pages... */}
-       <div className="">
+       <div className="max-w-lg mx-auto w-full p-3 border">
         {tab === 'profile' && <DashProfile />}
        </div>
     </div>
