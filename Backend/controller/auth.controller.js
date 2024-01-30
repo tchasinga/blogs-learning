@@ -3,6 +3,8 @@ const User = require("../models/user.model.js");
 const errorHandler = require("../utils/errors.js");
 const jwt = require("jsonwebtoken");
 
+
+// Adding user sing up
 const createUserSingUp = async (req, res, next) => {
   try {
     const { username, password, email } = req.body;

@@ -30,7 +30,7 @@ export default function SingIn() {
       setIsSingUp(true)
       setIsSingUpError(null)
       dispatch(singInStart())
-      const response = await fetch('http://localhost:5000/api/auth/singinuser', {
+      const response = await fetch('http://localhost:2000/api/auth/singinuser', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)

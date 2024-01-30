@@ -24,7 +24,7 @@ export default function Header() {
         <Button className='lg:hidden' variant='primary' color='gray' size='sm' pill rounded><FiSearch/></Button>
         <div className='flex items-center gap-2 md:order-2'>
            <Button className='w-12 h-10 hidden sm:inline'  onClick={() => dispatch(changeTheme())} variant='primary' color='gray' size='sm' outline pill rounded>
-                {theme === 'light' ? <FaMoon /> : <FaSun />}    
+                {theme === 'light' ? <FaSun /> : <FaMoon />}    
            </Button>
            {
                 currentUser ? (

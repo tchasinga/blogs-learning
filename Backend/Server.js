@@ -3,13 +3,15 @@ const mongoose = require('mongoose');
 require("dotenv").config();
 const cors = require('cors');
 const authRoutes = require('./routes/auth.route.js');
+const userUpdaingRoutes = require('./routes/user.route.js');
+// const cookieParser = require('cookie-parser');
 
 // Initialize the app
 const app = express();
 
 // Middlewares to parse JSON
 app.use(express.json());
-
+// app.use(cookieParser());
 
 // Middlewares to allow CORS
 app.use(cors({
@@ -30,16 +32,18 @@ app.use((err, req, res, next) => {
   });
 
 
+  const myLinks = "mongodb+srv://tchasingajacques:jack202050081@blogs-learning.pvex6hi.mongodb.net/blogs-learning?retryWrites=true&w=majority"
+
 // Connecting to MongoDB is required 
-const urlmongoDB = process.env.MONGO_URL;
+const urlmongoDB = process.env.MONGO_URL || myLinks;
 mongoose
   .connect(urlmongoDB, { useNewUrlParser: true, useUnifiedTopology: true })  
   .then(() => {
     console.log("Connected to MongoDB");
-    app.listen(5000, () => {
+    app.listen(2000, () => {
       console.log(
         "Congratulations! Now you are live on MongoDB service at port:",
-        5000
+        2000
       );
     });
   })
@@ -50,3 +54,4 @@ mongoose
 
 // APis routes 
 app.use("/api/auth/", authRoutes);
+app.use("/api/user/", userUpdaingRoutes);

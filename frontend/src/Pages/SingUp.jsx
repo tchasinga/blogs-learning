@@ -28,7 +28,7 @@ export default function SingUp() {
     try {
       setIsSingUp(true)
       setIsSingUpError(null)
-      const response = await fetch('http://localhost:5000/api/auth/singupuser', {
+      const response = await fetch('http://localhost:2000/api/auth/singupuser', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
