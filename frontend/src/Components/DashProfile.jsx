@@ -35,6 +35,8 @@ export default function DashProfile() {
 
 
   const uploadImage = async () =>{
+
+    setImageFileUploadingErrors(null);
     console.log('uploading image');
     const storage = getStorage(app);
     const fileName = new Date().getTime() +  imageFile.name;
@@ -50,6 +52,9 @@ export default function DashProfile() {
       (error) => {
         setImageFileUploadingErrors( "Your file must be less than 3 Mo",true);
         console.log(error); 
+        setImageFileUploadingProgress(null);
+        setImageFile(null);
+        setImageFileUrl(null);
       },
       ()=> {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
@@ -76,13 +81,13 @@ export default function DashProfile() {
               text={`${imageFileUploadingProgress}%`} 
               strokeWidth={5}
               styles={{
-                root: { width: 100 , height: 100, position: 'absolute', top: '0', left: '0'},
+                root: { width: '100%', height: '100%', position: 'absolute', top: '0', left: '0'},
                 path: { stroke: `rgb(62, 152, 199) ${imageFileUploadingProgress / 100}` },
                 text: { fill: '#f00', fontSize: '16px' },
               }} 
               />
             )} 
-                <img src={imageFileUrl || currentUser.user.ProfilePhoto}   className=' rounded-full w-full h-full border-8  border-[lightgray] object-cover '/>
+                <img src={imageFileUrl || currentUser.user.ProfilePhoto}   className={` rounded-full w-full h-full border-8  border-[lightgray] object-cover ${imageFileUploadingProgress && imageFileUploadingProgress < 100 && 'opacity-60'}`}/>
             </div>
            
             {imageFileUploadingErrors && <Alert type='danger' className='w-full'>{imageFileUploadingErrors}</Alert>}
