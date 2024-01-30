@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const User = require('../models/user.model.js');
+// const User = require('../models/user.model.js');
 const {errorHandler} = require('./errors.js');
 
 const verifyUser = async (req, res, next) => {
@@ -15,4 +15,7 @@ const verifyUser = async (req, res, next) => {
         next();
     }) 
 }
+
+// Exporting the verifyUser function
+module.exports = verifyUser;
 
