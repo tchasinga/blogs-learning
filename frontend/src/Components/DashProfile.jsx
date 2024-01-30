@@ -3,6 +3,8 @@ import { TextInput, Button , Alert } from 'flowbite-react'
 import { useEffect, useRef, useState } from 'react';
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import  app from '../firebase.js'
+import { CircularProgressbar } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
 
 export default function DashProfile() {
 
@@ -67,10 +69,22 @@ export default function DashProfile() {
       <h1 className='text-center pb-2'>Profile</h1>  
       <form className='flex flex-col'>
             <input type='file' className='hidden'  accept='image/*'  onChange={handlerImageChanges} ref={filePickerRef}/>
-            <div className='w-32 h-32 self-center cursor-pointer ' onClick={()=> filePickerRef.current.click()}>   
+            <div className='w-32 h-32 self-center cursor-pointer relative' onClick={()=> filePickerRef.current.click()}>
+
+               {imageFileUploadingProgress && (
+              <CircularProgressbar value={imageFileUploadingProgress || 0}
+              text={`${imageFileUploadingProgress}%`} 
+              strokeWidth={5}
+              styles={{
+                root: { width: 100 , height: 100, position: 'absolute', top: '0', left: '0'},
+                path: { stroke: `rgb(62, 152, 199) ${imageFileUploadingProgress / 100}` },
+                text: { fill: '#f00', fontSize: '16px' },
+              }} 
+              />
+            )} 
                 <img src={imageFileUrl || currentUser.user.ProfilePhoto}   className=' rounded-full w-full h-full border-8  border-[lightgray] object-cover '/>
             </div>
-
+           
             {imageFileUploadingErrors && <Alert type='danger' className='w-full'>{imageFileUploadingErrors}</Alert>}
 
            <div className='mt-5 m-2 flex flex-col gap-3'>
