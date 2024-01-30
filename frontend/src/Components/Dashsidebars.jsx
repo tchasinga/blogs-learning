@@ -1,17 +1,19 @@
 import { Sidebar } from 'flowbite-react';
+import { HiUser } from "react-icons/hi";
 
 export default function Dashsidebars() {
   return (
     <Sidebar className="dashsidebars">
-      <Sidebar.Item className="dashsidebars-item" icon="home" title="Home" url="/dashboard" />
-      <Sidebar.Item className="dashsidebars-item" icon="user" title="Profile" url="/dashboard?tab=profile" />
-      <Sidebar.Item className="dashsidebars-item" icon="user" title="Profile" url="/dashboard?tab=profile" />
-      <Sidebar.Item className="dashsidebars-item" icon="user" title="Profile" url="/dashboard?tab=profile" />
-      <Sidebar.Item className="dashsidebars-item" icon="user" title="Profile" url="/dashboard?tab=profile" />
-      <Sidebar.Item className="dashsidebars-item" icon="user" title="Profile" url="/dashboard?tab=profile" />
-      <Sidebar.Item className="dashsidebars-item" icon="user" title="Profile" url="/dashboard?tab=profile" />
-      <Sidebar.Item className="dashsidebars-item" icon="user" title="Profile" url="/dashboard?tab=profile" />
-      <Sidebar.Item className="dashsidebars-item" icon="user" title="Profile" url="/dashboard?tab=profile" />
+      <Sidebar.Items>
+
+      <Sidebar.ItemGroup>
+        <Sidebar.Item to="/dashboard" icon={HiUser} label="user" >
+          Profile
+        </Sidebar.Item>
+        
+        </Sidebar.ItemGroup>
+
+      </Sidebar.Items>
     </Sidebar>
   )
 }
