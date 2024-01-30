@@ -11,7 +11,7 @@ const app = express();
 
 // Middlewares to parse JSON
 app.use(express.json());
-app.use(cookieParser());
+// app.use(cookieParser());
 
 // Middlewares to allow CORS
 app.use(cors({
