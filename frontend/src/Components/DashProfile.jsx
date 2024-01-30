@@ -19,9 +19,19 @@ export default function DashProfile() {
             <TextInput className='w-full' type='password' id='password' label='password' placeholder='************' />
            </div>
             <div className='flex justify-center m-2'>
-                <Button className='w-full'>Update</Button>
+                <Button type='submit'  className='w-full'>Update</Button>
             </div>
         </form>
+        <div className='flex justify-between m-2'>
+          {/* First div is here */}
+          <div className='cursor-pointer'>
+               <span className='text-sm text-red-800' >Delete your account</span>
+          </div>
+
+          <div className='cursor-pointer'>
+               <span className='text-sm text-green-500' >Logout now</span>
+          </div>
+        </div>
     </div>
   )
 }
