@@ -11,6 +11,9 @@ export default function Dashboard() {
      const tabFromUrl = urlParams.get('tab');
       setTab(tabFromUrl);
       console.log(tabFromUrl);
+      if(tabFromUrl){
+        setTab(tabFromUrl);
+      }
    }
     , [location.search]
    )
