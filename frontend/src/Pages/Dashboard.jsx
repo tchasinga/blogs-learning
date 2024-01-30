@@ -19,9 +19,9 @@ export default function Dashboard() {
    )
 
   return (
-    <div>
+    <div className="min-h-screen flex flex-col md:flex-row ">
        {/* Creating side bars in the first place */}
-       <div className="">
+       <div className='md:w-56'>
         <Dashsidebars />
        </div>
 

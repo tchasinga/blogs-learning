@@ -19,7 +19,7 @@ export default function Dashsidebars() {
   )
 
   return (
-    <Sidebar className="dashsidebars">
+    <Sidebar className="dashsidebars w-full md:w-56">
       <Sidebar.Items>
 
       <Sidebar.ItemGroup>
