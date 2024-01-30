@@ -4,7 +4,7 @@ require("dotenv").config();
 const cors = require('cors');
 const authRoutes = require('./routes/auth.route.js');
 const userUpdaingRoutes = require('./routes/user.route.js');
-const cookieParser = require('cookie-parser');
+// const cookieParser = require('cookie-parser');
 
 // Initialize the app
 const app = express();

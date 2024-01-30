@@ -1,4 +1,4 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
 const { updateUserProfile } = require("../controller/user.controller.js");
 

@@ -1,62 +1,72 @@
 const User = require("../models/user.model.js");
-// const { errorHandler } = require("../utils/errors.js");
-// const jwt = require("jsonwebtoken");
-// const verifyUser = require("../utils/verifyuser.js");
 
-
-// creating a controller function to create a new for updating user profile
 const updateUserProfile = async (req, res, next) => {
-  if (req.user._id !== req.params.userId) {
-    return  res.status(401).json({msg : "You are not authorized to update this user"});
-  }
-
-  if (req.body.password) {
-    if (req.body.password.length < 6) {
-      return  res.status(401).json({msg : "Password should be at least 6 characters long"});
-    }
-  }
-
-  if (req.body.username) {
-    if (req.body.username.length < 4 || req.body.username.length > 20) {
-      return  res.status(401).json({msg : "Username should be between 4 and 20 characters long"});
-    }
-    if (req.body.username.includes(" ")) {
-      return res.status(401).json({msg : "Username should not contain spaces"});
-    }
-    if (!req.body.username.match(/^[a-zA-Z0-9]+$/)) {
-      return res.status(401).json({msg : "Username should not contain special characters"});
+  try {
+    // Ensure the user making the request is the owner of the profile
+    if (req.user._id !== req.params.userId) {
+      return res.status(401).json({ msg: "You are not authorized to update this user" });
     }
 
-    try {
-      const updatedUser = await User.findByIdAndUpdate(
-        req.params.userId,
-        {
-          $set: {
-            username: req.body.username,
-            email: req.body.email,
-            password: req.body.password,
-            profilePhoto: req.body.profilePhoto,
-          },
+    // Check if the password meets the minimum length requirement
+    if (req.body.password && req.body.password.length < 6) {
+      return res.status(401).json({ msg: "Password should be at least 6 characters long" });
+    }
+
+    // Check username constraints
+    if (req.body.username) {
+      const usernameLength = req.body.username.length;
+      if (usernameLength < 4 || usernameLength > 20) {
+        return res.status(401).json({ msg: "Username should be between 4 and 20 characters long" });
+      }
+      if (req.body.username.includes(" ")) {
+        return res.status(401).json({ msg: "Username should not contain spaces" });
+      }
+      if (!/^[a-zA-Z0-9]+$/.test(req.body.username)) {
+        return res.status(401).json({ msg: "Username should not contain special characters" });
+      }
+    }
+
+    // Check email constraints
+    if (req.body.email) {
+      const emailLength = req.body.email.length;
+      if (emailLength < 6 || emailLength > 30) {
+        return res.status(401).json({ msg: "Email should be between 6 and 30 characters long" });
+      }
+    }
+
+    // Update the user profile
+    const updatedUser = await User.findByIdAndUpdate(
+      req.params.userId || req.user._id || req.params._id,
+      {
+        $set: {
+          username: req.body.username,
+          email: req.body.email,
+          password: req.body.password,
+          profilePhoto: req.body.profilePhoto,
         },
-        { new: true }
-      );
-      const { password, ...rest } = updatedUser._doc;
-      res.status(200).json({
-        success: true,
-        message: "User updated successfully",
-        user: rest,
-      });
-    } catch (error) {}
-  }
-
-  if (req.body.email) {
-    if (req.body.email.length < 6 || req.body.email.length > 30) {
-      return res.status(401).json({msg : "Email should be between 6 and 30 characters long"});
+      },
+      { new: true }
+    );
+    
+    if (!updatedUser) {
+      console.error("No user found with this id");
+      return res.status(404).json({ msg: "No user found with this id" });
     }
+    
+    // Omit password field from the response
+    const { password, ...rest } = updatedUser._doc;
+    
+    // Send the response
+    res.status(200).json({
+      success: true,
+      message: "User updated successfully",
+      user: rest,
+    });
+  } catch (error) {
+    // Handle errors
+    console.error("Error updating user profile:", error);
+    res.status(500).json({ msg: "Internal Server Error" });
   }
 };
 
-// exporting the controller functions
-module.exports = {
-  updateUserProfile,
-};
+module.exports = { updateUserProfile };
