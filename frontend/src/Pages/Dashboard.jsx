@@ -1,7 +1,26 @@
-
+import { useEffect, useState } from "react";
+import {useLocation} from "react-router-dom";
 
 export default function Dashboard() {
+  const location = useLocation();
+   const [tab, setTab] = useState('');
+   useEffect(() =>{
+     const urlParams = new URLSearchParams(location.search);
+     const tabFromUrl = urlParams.get('tab');
+      setTab(tabFromUrl);
+      console.log(tabFromUrl);
+   }
+    , [location.search]
+   )
+
   return (
-    <div>Dashboard</div>
+    <div>
+       {/* Creating side bars in the first place */}
+       <div className=""></div>
+
+
+       {/* Creating Profile pages... */}
+       <div className=""></div>
+    </div>
   )
 }
