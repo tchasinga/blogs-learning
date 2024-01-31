@@ -1,16 +1,18 @@
 const User = require("../models/user.model.js");
+const bcrypt = require("bcryptjs");
 
 const updateUserProfile = async (req, res, next) => {
   try {
-    // Ensure the user making the request is the owner of the profile
-    if (req.user._id !== req.params.userId) {
-      return res.status(401).json({ msg: "You are not authorized to update this user" });
-    }
+    
+   // Check if the password meets the minimum length requirement
+if (req.body.password && req.body.password.length < 6) {
+  return res.status(401).json({ msg: "Password should be at least 6 characters long" });
+}
 
-    // Check if the password meets the minimum length requirement
-    if (req.body.password && req.body.password.length < 6) {
-      return res.status(401).json({ msg: "Password should be at least 6 characters long" });
-    }
+// Hash the password if it exists and meets the length requirement
+if (req.body.password) {
+  req.body.password = await bcrypt.hash(req.body.password, 10);
+}
 
     // Check username constraints
     if (req.body.username) {
@@ -36,7 +38,7 @@ const updateUserProfile = async (req, res, next) => {
 
     // Update the user profile
     const updatedUser = await User.findByIdAndUpdate(
-      req.params.userId || req.user._id || req.params._id,
+      { _id: req.params.userId }, // Corrected from req.params.id to req.params.userId
       {
         $set: {
           username: req.body.username,
