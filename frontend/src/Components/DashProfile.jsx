@@ -67,8 +67,6 @@ export default function DashProfile() {
 
  // Submitting the updating Image
 
-
-
   return ( 
     <div className=''>
       <h1 className='text-center pb-2'>Profile</h1>  
