@@ -65,7 +65,7 @@ export default function DashProfile() {
       )
   }
 
- // Submitting the updating Image
+ // Submitting the updating Image  and moew details and great...
 
   return ( 
     <div className=''>
