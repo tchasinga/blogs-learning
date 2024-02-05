@@ -1,14 +1,16 @@
-import { useSelector } from 'react-redux';
+import { useSelector , useDispatch} from 'react-redux';
 import { TextInput, Button , Alert } from 'flowbite-react'
 import { useEffect, useRef, useState } from 'react';
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import  app from '../firebase.js'
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
+import { updateUserStart, updateUserFailure, updateUserSuccess} from '../redux/user/userSlice.js';
 
 export default function DashProfile() {
 
   const currentUser = useSelector((state) => state.user?.user?.currentUser);
+  const dispatch = useDispatch();
   const [imageFile, setImageFile] = useState(null);
   const [imageFileUrl, setImageFileUrl] = useState(null);
   const filePickerRef = useRef( );
@@ -84,11 +86,24 @@ export default function DashProfile() {
       return;
     }
     try {
+      dispatch(updateUserStart());
       const res = await fetch(`http://localhost:2000/api/user/updatinguser/${currentUser.user._id}`, {
-        
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${currentUser.token}`
+        },
+        body: JSON.stringify(formDatas)
       })
+      const data = await res.json();
+      if(!res.ok){
+        dispatch(updateUserFailure(data.message));
+      } else {
+        dispatch(updateUserSuccess(data));
+      }
     } catch (error) {
-      
+      console.log(error);
+      dispatch(updateUserFailure(error.message));
     }
   }
 
