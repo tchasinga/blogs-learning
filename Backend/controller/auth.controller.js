@@ -55,7 +55,7 @@ const createUserSignInUser = async (req, res, next) => {
       if (!validPassword) {
         return next(errorHandler(400, "Please check your information, something is wrong"));
       }
-      const token = jwt.sign({ id: validUser._id }, process.env.JWT_SECRET, { expiresIn: "1d" });
+      const token = jwt.sign({ id: validUser._id, isAdmin : validUser.isAdmin}, process.env.JWT_SECRET, { expiresIn: "1d" });
       const {password : pass, ...user } = validUser._doc;
       res
         .status(200)
@@ -77,7 +77,7 @@ const createUserSignInUserWithGoogle = async (req, res, next) => {
 
     if (user) {
       // If user exists, sign them in
-      const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "1d" });
+      const token = jwt.sign({ id: user._id, isAdmin : user.isAdmin }, process.env.JWT_SECRET, { expiresIn: "1d" });
       const { password, ...userData } = user._doc;
 
       // Set the JWT token as a cookie and send response
@@ -98,7 +98,7 @@ const createUserSignInUserWithGoogle = async (req, res, next) => {
       });
 
       await newUser.save();
-      const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET, { expiresIn: "1d" });
+      const token = jwt.sign({ id: newUser._id , isAdmin : newUser.isAdmin}, process.env.JWT_SECRET, { expiresIn: "1d" });
       const { password, ...userData } = newUser._doc;
 
       // Set the JWT token as a cookie and send response

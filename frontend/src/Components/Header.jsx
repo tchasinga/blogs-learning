@@ -4,12 +4,37 @@ import { FiSearch } from "react-icons/fi";
 import { FaMoon , FaSun } from "react-icons/fa";
 import { useSelector, useDispatch } from 'react-redux';
 import {changeTheme} from '../redux/theme/themeSlice.js'
+import { signOutUserStart,
+    signOutUserSuccess,
+    signOutUserFailure,
+  } from '../redux/user/userSlice.js';
 
 export default function Header() {
   const dispatch = useDispatch()
   const path = useLocation().pathname;
   const currentUser = useSelector((state) => state.user?.user?.currentUser);
   const {theme} = useSelector((state) => state.theme || state.user.theme);  
+
+  // New code is added now... of singout the user account
+  const handlerPostUserLogout = async () =>{
+    try {
+      dispatch(signOutUserStart());
+      const res = await fetch(`http://localhost:2000/api/user/signout`, {
+        method: 'POST',
+      })
+      const data = await res.json();
+      console.log(data);
+      if(data.error){
+        dispatch(signOutUserFailure(data.error));
+      }
+      else{
+        dispatch(signOutUserSuccess());
+      }
+    } catch (error) {
+      console.log(error);
+      dispatch(signOutUserFailure(error.message));
+    }
+  }
 
 
   return (
@@ -29,7 +54,7 @@ export default function Header() {
            {
                 currentUser ? (
                  <Dropdown className='' arrowIcon={false} inline label={
-                  <Avatar className='w-10 h-10' img={currentUser?.user?.ProfilePhoto} />
+                  <Avatar className='w-10 h-10' img={currentUser?.user?.profilePhoto} />
                  }>
                     <Dropdown.Header>
                     <p className='text-sm'>Hello, {currentUser?.user?.username}</p>
@@ -45,7 +70,7 @@ export default function Header() {
                       <Dropdown.Item>
                           <Link to='/profile'>Profile</Link>
                       </Dropdown.Item>
-                      <Dropdown.Item>
+                      <Dropdown.Item onClick={handlerPostUserLogout}>
                           <Link to='/singout'>Sing Out</Link>
                       </Dropdown.Item>
                       <Dropdown.Item>
