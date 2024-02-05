@@ -194,7 +194,7 @@ export default function DashProfile() {
                currentUser.user.isAdmin && (
                 <>
                 <div className='flex justify-center m-2'>
-                  <Button type='submit'  className='w-full'>I&apos;m admin here</Button>
+                  <Button type='button'  gradientDuoTone={`purpleToPink`} className='w-full'>Create post</Button>
                 </div>
                 </>
               )
