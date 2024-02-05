@@ -1,3 +1,5 @@
+const Post = require('../models/post.model.js');
+
 
 // Create Post
 const createPost = async (req, res) => {
@@ -16,4 +18,10 @@ const createPost = async (req, res) => {
         userId : req.user.id
     });
     newPost.save()
+}
+
+
+// Adding export methodes
+module.exports = {
+    createPost
 }
