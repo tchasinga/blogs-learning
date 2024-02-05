@@ -177,7 +177,7 @@ export default function DashProfile() {
               }} 
               />
             )} 
-                <img src={imageFileUrl || currentUser.user.ProfilePhoto}   className={` rounded-full w-full h-full border-8  border-[lightgray] object-cover ${imageFileUploadingProgress && imageFileUploadingProgress < 100 && 'opacity-60'}`}/>
+                <img src={imageFileUrl || currentUser.user.profilePhoto}   className={` rounded-full w-full h-full border-8  border-[lightgray] object-cover ${imageFileUploadingProgress && imageFileUploadingProgress < 100 && 'opacity-60'}`}/>
             </div>
            
             {imageFileUploadingErrors && <Alert type='danger' className='w-full'>{imageFileUploadingErrors}</Alert>}
