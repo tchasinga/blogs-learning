@@ -144,6 +144,10 @@ export default function DashProfile() {
         <div className='flex justify-between m-2'>
           {/* First div is here */}
           <div className='cursor-pointer'>
+               <span className='text-sm text-red-800' >Delete your account</span>
+          </div>
+
+          <div className='cursor-pointer'>
                <span className='text-sm text-green-500' >Logout now</span>
           </div>
         </div>
