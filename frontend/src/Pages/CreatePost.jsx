@@ -37,6 +37,8 @@ export default function CreatePost() {
                     <option value='Typegoose'>Typegoose</option>
                 </Select>
             </div>
+            <div className='flex gap-3 items-center justify-center border-4 border-teal-500 border-dotted p-3'>
+            </div>
         </form>
     </div>
   )
