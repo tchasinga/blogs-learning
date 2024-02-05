@@ -14,8 +14,12 @@ export default function DashProfile() {
   const filePickerRef = useRef( );
   const [imageFileUploadingProgress, setImageFileUploadingProgress] = useState(0);
   const [imageFileUploadingErrors, setImageFileUploadingErrors] = useState(null);
+  const [formDatas, setFormDatas] = useState({});
 
   console.log(imageFileUploadingProgress , imageFileUploadingErrors)
+
+
+  
 
   const handlerImageChanges = (e) =>{
     const file = e.target.files[0];
@@ -60,17 +64,41 @@ export default function DashProfile() {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
           console.log('File available at', downloadURL);
           setImageFileUrl(downloadURL); 
+          setImageFileUploadingProgress(100);
+          setFormDatas({...formDatas, ProfilePhoto: downloadURL});
         });
       }
       )
   }
+
+  // New code is added now... od tracking the changes of the form datas of the user...
+  const HandlerChangeCodeisAdded = (e) =>{
+    e.preventDefault();
+    setFormDatas({...formDatas, [e.target.id]: e.target.value});
+  }
+ 
+  //  New code is added now... of updating the user profile datas
+  const handlerFormSubmit = async (e) =>{
+    e.preventDefault();
+    if(Object.keys(formDatas).length === 0){
+      return;
+    }
+    try {
+      const res = await fetch(`http://localhost:2000/api/user/updatinguser/${currentUser.user._id}`, {
+        
+      })
+    } catch (error) {
+      
+    }
+  }
+
 
  // Submitting the updating Image  and moew details and great... new days is added today
 
   return ( 
     <div className=''>
       <h1 className='text-center pb-2'>Profile</h1>  
-      <form className='flex flex-col'>
+      <form onSubmit={handlerFormSubmit} className='flex flex-col'>
             <input type='file' className='hidden'  accept='image/*'  onChange={handlerImageChanges} ref={filePickerRef}/>
             <div className='w-32 h-32 self-center cursor-pointer relative my-5' onClick={()=> filePickerRef.current.click()}>
 
@@ -91,9 +119,9 @@ export default function DashProfile() {
             {imageFileUploadingErrors && <Alert type='danger' className='w-full'>{imageFileUploadingErrors}</Alert>}
 
            <div className='mt-5 m-2 flex flex-col gap-3'>
-           <TextInput className='w-full' type='text' id='username' label='Username' value={currentUser.user.username} />
-            <TextInput className='w-full' type='email' id='email'  label='Email' value={currentUser.user.email} />
-            <TextInput className='w-full' type='password' id='password' label='password' placeholder='************' />
+           <TextInput className='w-full' type='text' id='username' onChange={HandlerChangeCodeisAdded} label='Username' value={currentUser.user.username} />
+            <TextInput className='w-full' type='email' id='email' onChange={HandlerChangeCodeisAdded} label='Email' value={currentUser.user.email} />
+            <TextInput className='w-full' type='password' id='password' onChange={HandlerChangeCodeisAdded} label='password' placeholder='************' />
            </div>
             <div className='flex justify-center m-2'>
                 <Button type='submit'  className='w-full'>Update</Button>
