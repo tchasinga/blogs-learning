@@ -43,24 +43,24 @@ const userSlice = createSlice({
       state.loading = false;
     },
 
-      // Delete user from the database
+    // Delete user from the database
 
-      deleteUserStart: (state) => {
-        state.loading = true;
-      },
-  
-      deleteUserSuccess: (state) => {
-        state.currentUser = null;
-        state.loading = false;
-        state.error = null;
-      },
-  
-      deleteUserFailure: (state, action) => {
-        state.error = action.payload;
-        state.loading = false;
-      },
+    deleteUserStart: (state) => {
+      state.loading = true;
+    },
 
-       // Adding singout function
+    deleteUserSuccess: (state) => {
+      state.currentUser = null;
+      state.loading = false;
+      state.error = null;
+    },
+
+    deleteUserFailure: (state, action) => {
+      state.error = action.payload;
+      state.loading = false;
+    },
+
+    // Adding singout function
 
     signOutUserStart: (state) => {
       state.loading = true;
