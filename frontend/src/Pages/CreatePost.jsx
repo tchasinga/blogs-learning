@@ -1,4 +1,7 @@
-import { Select, TextInput } from 'flowbite-react'
+import { Button, FileInput, Select, TextInput } from 'flowbite-react'
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+
 
 
 export default function CreatePost() {
@@ -38,7 +41,11 @@ export default function CreatePost() {
                 </Select>
             </div>
             <div className='flex gap-3 items-center justify-center border-4 border-teal-500 border-dotted p-3'>
+                <FileInput id='image' accept='image/*' required className='w-full' />
+                <Button type='submit' className='btn  text-xs w-1/3'>Upload image</Button>
             </div>
+            <ReactQuill id='content' required className='w-full h-96 pb-5' theme="snow" />
+            <Button type='submit' className='btn mt-5 w-full' gradientDuoTone='purpleToPink'>Create Post</Button>
         </form>
     </div>
   )
