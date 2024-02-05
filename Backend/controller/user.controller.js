@@ -26,11 +26,11 @@ const updateUserProfile = async (req, res, next) => {
           .status(401)
           .json({ msg: "Username should be between 4 and 20 characters long" });
       }
-      if (req.body.username.includes(" ")) {
-        return res
-          .status(401)
-          .json({ msg: "Username should not contain spaces" });
-      }
+      // if (req.body.username.includes(" ")) {
+      //   return res
+      //     .status(401)
+      //     .json({ msg: "Username should not contain spaces" });
+      // }
       if (!/^[a-zA-Z0-9]+$/.test(req.body.username)) {
         return res
           .status(401)

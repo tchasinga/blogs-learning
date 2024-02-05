@@ -18,8 +18,7 @@ export default function DashProfile() {
   const [imageFileUploadingErrors, setImageFileUploadingErrors] = useState(null);
   const [formDatas, setFormDatas] = useState({});
 
-  console.log(imageFileUploadingProgress , imageFileUploadingErrors)
-
+  
 
   
 
@@ -75,7 +74,6 @@ export default function DashProfile() {
 
   // New code is added now... od tracking the changes of the form datas of the user...
   const HandlerChangeCodeisAdded = (e) =>{
-    e.preventDefault();
     setFormDatas({...formDatas, [e.target.id]: e.target.value});
   }
  
@@ -91,14 +89,15 @@ export default function DashProfile() {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${currentUser.token}`
         },
         body: JSON.stringify(formDatas)
       })
       const data = await res.json();
-      if(!res.ok){
-        dispatch(updateUserFailure(data.message));
-      } else {
+      console.log(data);
+      if(data.error){
+        dispatch(updateUserFailure(data.error));
+      }
+      else{
         dispatch(updateUserSuccess(data));
       }
     } catch (error) {
@@ -134,8 +133,8 @@ export default function DashProfile() {
             {imageFileUploadingErrors && <Alert type='danger' className='w-full'>{imageFileUploadingErrors}</Alert>}
 
            <div className='mt-5 m-2 flex flex-col gap-3'>
-           <TextInput className='w-full' type='text' id='username' onChange={HandlerChangeCodeisAdded} label='Username' value={currentUser.user.username} />
-            <TextInput className='w-full' type='email' id='email' onChange={HandlerChangeCodeisAdded} label='Email' value={currentUser.user.email} />
+           <TextInput className='w-full' type='text' id='username' onChange={HandlerChangeCodeisAdded} label='Username' defaultValue={currentUser.user.username} />
+            <TextInput className='w-full' type='email' id='email' onChange={HandlerChangeCodeisAdded} label='Email' defaultValue={currentUser.user.email} />
             <TextInput className='w-full' type='password' id='password' onChange={HandlerChangeCodeisAdded} label='password' placeholder='************' />
            </div>
             <div className='flex justify-center m-2'>
