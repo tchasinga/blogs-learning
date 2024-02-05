@@ -102,5 +102,19 @@ const getUserProfileDeleteAccount = async (req, res, next) => {
   }
 };
 
+const getUserProfileSingoutNow = async (req, res, next) => {
+  try {
+    res.clearCookie("access_token");
+    res.status(200).json({ message: "User signed out successfully!" });
+  } catch (error) {
+    // Handle different types of errors
+    if (error.name === 'CastError') {
+      return res.status(400).json({ message: "Invalid user ID" });
+    }
+    // Handle other types of errors
+    next(error);
+  }
+}
 
-module.exports = { updateUserProfile , getUserProfileDeleteAccount};
+
+module.exports = { updateUserProfile , getUserProfileDeleteAccount , getUserProfileSingoutNow};
