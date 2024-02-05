@@ -66,7 +66,7 @@ export default function DashProfile() {
           console.log('File available at', downloadURL);
           setImageFileUrl(downloadURL); 
           setImageFileUploadingProgress(100);
-          setFormDatas({...formDatas, ProfilePhoto: downloadURL});
+          setFormDatas({...formDatas, profilePhoto: downloadURL});
         });
       }
       )

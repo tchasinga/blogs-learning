@@ -31,11 +31,11 @@ const updateUserProfile = async (req, res, next) => {
       //     .status(401)
       //     .json({ msg: "Username should not contain spaces" });
       // }
-      if (!/^[a-zA-Z0-9]+$/.test(req.body.username)) {
-        return res
-          .status(401)
-          .json({ msg: "Username should not contain special characters" });
-      }
+      // if (!/^[a-zA-Z0-9]+$/.test(req.body.username)) {
+      //   return res
+      //     .status(401)
+      //     .json({ msg: "Username should not contain special characters" });
+      // }
     }
 
     // Check email constraints
