@@ -4,6 +4,7 @@ require("dotenv").config();
 const cors = require('cors');
 const authRoutes = require('./routes/auth.route.js');
 const userUpdaingRoutes = require('./routes/user.route.js');
+const userPostMethods = require('./routes/post.route.js');
 // const cookieParser = require('cookie-parser');
 
 // Initialize the app
@@ -55,3 +56,4 @@ mongoose
 // APis routes 
 app.use("/api/auth/", authRoutes);
 app.use("/api/user/", userUpdaingRoutes);
+app.use("/api/post/", userPostMethods);
