@@ -9,5 +9,11 @@ const createPost = async (req, res) => {
     }
 
     const slug = req.body.title.split(' ').join('-').tolowerCase().replace(/[^a-zA-Z0-9-]/g, '');
-     
+    
+    const newPost = new Post({
+        ...req.body,
+        slug,
+        userId : req.user.id
+    });
+    newPost.save()
 }
