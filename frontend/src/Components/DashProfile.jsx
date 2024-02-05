@@ -13,13 +13,11 @@ export default function DashProfile() {
   const dispatch = useDispatch();
   const [imageFile, setImageFile] = useState(null);
   const [imageFileUrl, setImageFileUrl] = useState(null);
-  const filePickerRef = useRef( );
+  const filePickerRef = useRef();
   const [imageFileUploadingProgress, setImageFileUploadingProgress] = useState(0);
   const [imageFileUploadingErrors, setImageFileUploadingErrors] = useState(null);
   const [formDatas, setFormDatas] = useState({});
   const [showModels, setShowModels] = useState(false);
-
-  
 
   
 
@@ -144,7 +142,7 @@ export default function DashProfile() {
         </form>
         <div className='flex justify-between m-2'>
           {/* First div is here */}
-          <div className='cursor-pointer'>
+          <div className='cursor-pointer' onClick={()=> setShowModels(true)}>
                <span className='text-sm text-red-800' >Delete your account</span>
           </div>
 
@@ -152,6 +150,9 @@ export default function DashProfile() {
                <span className='text-sm text-green-500' >Logout now</span>
           </div>
         </div>
+
+        {/* Adding a show model confirmation data...*/}
+        
     </div>
   )
 }
