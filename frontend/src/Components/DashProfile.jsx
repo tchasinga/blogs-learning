@@ -65,7 +65,7 @@ export default function DashProfile() {
       )
   }
 
- // Submitting the updating Image  and moew details and great...
+ // Submitting the updating Image  and moew details and great... new days is added today
 
   return ( 
     <div className=''>
