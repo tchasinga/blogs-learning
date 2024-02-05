@@ -12,6 +12,7 @@ import { updateUserStart, updateUserFailure, updateUserSuccess ,  deleteUserStar
   signOutUserSuccess,
   signOutUserFailure,
 } from '../redux/user/userSlice.js';
+import { Link } from 'react-router-dom';
 
 export default function DashProfile() {
 
@@ -193,9 +194,11 @@ export default function DashProfile() {
             {
                currentUser.user.isAdmin && (
                 <>
+                <Link to={'create-post'} className='text-center text-blue-500'>
                 <div className='flex justify-center m-2'>
                   <Button type='button'  gradientDuoTone={`purpleToPink`} className='w-full'>Create post</Button>
                 </div>
+                </Link>
                 </>
               )
             }
