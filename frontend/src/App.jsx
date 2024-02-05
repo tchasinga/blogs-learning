@@ -8,6 +8,8 @@ import Projects from './Pages/Projects'
 import Header from './Components/Header'
 import FooterCom from './Components/Footer'
 import PrivateRoom from './Components/PrivateRoom'
+import PrivateRoomAdmins from './Components/PrivateRoomAdmins'
+import CreatePost from './Pages/CreatePost'
 
 function App() {
 
@@ -28,6 +30,10 @@ function App() {
             <Route path="/projects" element={<Projects />} />
             <Route path="/about" element={<About />} />
             <Route path="/signout" element={<SingIn />} />
+        </Route>
+
+        <Route  element={<PrivateRoomAdmins />} >
+            <Route path="/create-post" element={<CreatePost />} />
         </Route>
         </Routes>
         <FooterCom />
