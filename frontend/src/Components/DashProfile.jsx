@@ -5,7 +5,9 @@ import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/
 import  app from '../firebase.js'
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
-import { updateUserStart, updateUserFailure, updateUserSuccess} from '../redux/user/userSlice.js';
+import { updateUserStart, updateUserFailure, updateUserSuccess ,  deleteUserStart,
+  deleteUserFailure,
+  deleteUserSuccess,} from '../redux/user/userSlice.js';
 
 export default function DashProfile() {
 
@@ -108,6 +110,7 @@ export default function DashProfile() {
   // New code is added now... of deleting the user account
   const handlerDeleteUser = async () =>{
     try {
+      dispatch(deleteUserStart());
       const res = await fetch(`http://localhost:2000/api/user/deletinguser/${currentUser.user._id}`, {
         method: 'DELETE',
         headers: {
@@ -117,14 +120,14 @@ export default function DashProfile() {
       const data = await res.json();
       console.log(data);
       if(data.error){
-        dispatch(updateUserFailure(data.error));
+        dispatch(deleteUserFailure(data.error));
       }
       else{
-        dispatch(updateUserSuccess(data));
+        dispatch(deleteUserSuccess());
       }
     } catch (error) {
       console.log(error);
-      dispatch(updateUserFailure(error.message));
+      dispatch(deleteUserFailure(error.message));
     }
   }
 
