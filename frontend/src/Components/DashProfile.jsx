@@ -140,10 +140,7 @@ export default function DashProfile() {
     try {
       dispatch(signOutUserStart());
       const res = await fetch(`http://localhost:2000/api/user/signout`, {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        method: 'POST',
       })
       const data = await res.json();
       console.log(data);
