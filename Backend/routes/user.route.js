@@ -4,6 +4,6 @@ const { updateUserProfile , getUserProfileDeleteAccount } = require("../controll
 
 // Create a new user routes
 router.put("/updatinguser/:userId", updateUserProfile);
-router.delete("/deletinguser/:userId", getUserProfileDeleteAccount);
+router.delete("/deletinguser/:id", getUserProfileDeleteAccount);
 
 module.exports = router;

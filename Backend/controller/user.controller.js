@@ -83,4 +83,24 @@ const updateUserProfile = async (req, res, next) => {
   }
 };
 
-module.exports = { updateUserProfile };
+// Add user delete Account now...
+const getUserProfileDeleteAccount = async (req, res, next) => {
+  try {
+    const user = await User.findByIdAndDelete(req.params.id);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    res.clearCookie("access_token");
+    res.status(200).json({ message: "User deleted successfully!" });
+  } catch (error) {
+    // Handle different types of errors
+    if (error.name === 'CastError') {
+      return res.status(400).json({ message: "Invalid user ID" });
+    }
+    // Handle other types of errors
+    next(error);
+  }
+};
+
+
+module.exports = { updateUserProfile , getUserProfileDeleteAccount};
