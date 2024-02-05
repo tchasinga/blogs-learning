@@ -190,6 +190,15 @@ export default function DashProfile() {
             <div className='flex justify-center m-2'>
                 <Button type='submit'  className='w-full'>Update</Button>
             </div>
+            {
+               currentUser.user.isAdmin && (
+                <>
+                <div className='flex justify-center m-2'>
+                  <Button type='submit'  className='w-full'>I&apos;m admin here</Button>
+                </div>
+                </>
+              )
+            }
         </form>
         <div className='flex justify-between m-2'>
           {/* First div is here */}
