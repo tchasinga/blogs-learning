@@ -44,7 +44,7 @@ export default function CreatePost() {
                 <FileInput id='image' accept='image/*' required className='w-full' />
                 <Button type='submit' className='btn  text-xs w-1/3'>Upload image</Button>
             </div>
-            <ReactQuill id='content' required className='w-full h-96 pb-5' theme="snow" />
+            <ReactQuill id='content' required className='w-full h-96 pb-5' theme="snow"  placeholder='Write something here'/>
             <Button type='submit' className='btn mt-5 w-full' gradientDuoTone='purpleToPink'>Create Post</Button>
         </form>
     </div>
