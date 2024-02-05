@@ -7,7 +7,11 @@ import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import { updateUserStart, updateUserFailure, updateUserSuccess ,  deleteUserStart,
   deleteUserFailure,
-  deleteUserSuccess,} from '../redux/user/userSlice.js';
+  deleteUserSuccess,
+  signOutUserStart,
+  signOutUserSuccess,
+  signOutUserFailure,
+} from '../redux/user/userSlice.js';
 
 export default function DashProfile() {
 
@@ -131,6 +135,30 @@ export default function DashProfile() {
     }
   }
 
+  // New code is added now... of singout the user account
+  const handlerPostUserLogout = async () =>{
+    try {
+      dispatch(signOutUserStart());
+      const res = await fetch(`http://localhost:2000/api/user/signout`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+      const data = await res.json();
+      console.log(data);
+      if(data.error){
+        dispatch(signOutUserFailure(data.error));
+      }
+      else{
+        dispatch(signOutUserSuccess());
+      }
+    } catch (error) {
+      console.log(error);
+      dispatch(signOutUserFailure(error.message));
+    }
+  }
+
 
  // Submitting the updating Image  and moew details and great... new days is added today
 
@@ -172,7 +200,7 @@ export default function DashProfile() {
                <span className='text-sm text-red-800' >Delete your account</span>
           </div>
 
-          <div className='cursor-pointer'>
+          <div className='cursor-pointer' onClick={handlerPostUserLogout}>
                <span className='text-sm text-green-500' >Logout now</span>
           </div>
         </div>
