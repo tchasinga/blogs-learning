@@ -105,6 +105,29 @@ export default function DashProfile() {
     }
   }
 
+  // New code is added now... of deleting the user account
+  const handlerDeleteUser = async () =>{
+    try {
+      const res = await fetch(`http://localhost:2000/api/user/deletinguser/${currentUser.user._id}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+      const data = await res.json();
+      console.log(data);
+      if(data.error){
+        dispatch(updateUserFailure(data.error));
+      }
+      else{
+        dispatch(updateUserSuccess(data));
+      }
+    } catch (error) {
+      console.log(error);
+      dispatch(updateUserFailure(error.message));
+    }
+  }
+
 
  // Submitting the updating Image  and moew details and great... new days is added today
 
@@ -152,7 +175,17 @@ export default function DashProfile() {
         </div>
 
         {/* Adding a show model confirmation data...*/}
-        
+        {showModels && (
+          <div className='fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center '>
+            <div className='bg-white p-5 rounded-md w-96'>
+              <h1 className='text-center text-red-800'>Are you sure to delete your account</h1>
+              <div className='flex justify-between gap-2'>
+                <Button className='w-1/2' onClick={()=> setShowModels(false)}>Cancel</Button>
+                <Button className='w-1/2 myhover' onClick={handlerDeleteUser}>Delete</Button>
+              </div>
+            </div>
+          </div>
+        )}
     </div>
   )
 }
