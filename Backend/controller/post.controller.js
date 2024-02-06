@@ -18,7 +18,12 @@ const createPost = async (req, res) => {
         userId : req.user.id
     });
    try {
-    newPost.save()
+    const savedPost =  newPost.save()
+    res.status(201).json({
+        message: "Post created successfully...!!!",
+        post: savedPost,
+        success: true
+    })
    } catch (error) {
     
    }
