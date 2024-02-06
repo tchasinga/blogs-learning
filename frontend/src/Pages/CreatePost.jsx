@@ -1,10 +1,26 @@
 import { Button, FileInput, Select, TextInput } from 'flowbite-react'
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import {getStorage, ref, uploadBytesResumable, getDownloadURL} from 'firebase/storage'
 
 
 
 export default function CreatePost() {
+
+    const [files , setFiles] = useState(null) 
+
+    const handlerUploadImg = async (e) => {
+        e.preventDefault()
+        try {
+            if(!files){
+                return alert('File not found')
+            }
+            const storage = getStorage();
+        } catch (error) {
+        console.log(error)
+        }
+       }
+
   return (
     <div className="p-3 max-w-3xl mx-auto min-h-screen w-full">
         <h1 className="text-center text-3xl text-dark-700 font-normal">Create Post...</h1>
@@ -41,8 +57,8 @@ export default function CreatePost() {
                 </Select>
             </div>
             <div className='flex gap-3 items-center justify-center border-4 border-teal-500 border-dotted p-3'>
-                <FileInput id='image' accept='image/*' required className='w-full' />
-                <Button type='submit' className='btn  text-xs w-1/3'>Upload image</Button>
+                <FileInput id='image' accept='image/*' required className='w-full'  onChange={(e)=>setFiles(e.target.files[0])}/>
+                <Button type='submit' className='btn  text-xs w-1/3' onClick={handlerUploadImg}>Upload image</Button>
             </div>
             <ReactQuill id='content' required className='w-full h-96 pb-5' theme="snow"  placeholder='Write something here'/>
             <Button type='submit' className='btn mt-5 w-full' gradientDuoTone='purpleToPink'>Create Post</Button>
