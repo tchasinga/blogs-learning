@@ -17,7 +17,11 @@ const createPost = async (req, res) => {
         slug,
         userId : req.user.id
     });
+   try {
     newPost.save()
+   } catch (error) {
+    
+   }
 }
 
 
