@@ -25,7 +25,11 @@ const createPost = async (req, res) => {
         success: true
     })
    } catch (error) {
-    
+    res.status(500).json({
+        message: "Post not created...!!!",
+        error: error.message,
+        success: false
+    })
    }
 }
 
