@@ -7,7 +7,8 @@ import { useState } from 'react';
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import app from '../firebase';
-import SnackbarContent from '@mui/material/SnackbarContent';
+import { Snackbar} from '@mui/material';
+
 
 // import toast, { Toaster } from 'react-hot-toast';
 
@@ -20,6 +21,8 @@ export default function CreatePost() {
     const [imageUploadProgress, setImageUploadProgress] = useState(0)
     const [imageUploadErrors, setImageUploadErrors] = useState(null)
     const [formDatas, setFormDatas] = useState({})
+
+   
 
     const handlerUploadImg = async (e) => {
         e.preventDefault()
@@ -118,7 +121,7 @@ export default function CreatePost() {
         </form>
         {
             imageUploadErrors && <p className='text-red-500 text-center'>
-                { <SnackbarContent open={open} autoHideDuration={6000} message={imageUploadErrors}/> }
+                { <Snackbar open={open} autoHideDuration={3000} message={imageUploadErrors} /> }
             </p>
         }
     </div>
