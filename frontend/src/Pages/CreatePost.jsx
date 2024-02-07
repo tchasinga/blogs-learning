@@ -21,6 +21,7 @@ export default function CreatePost() {
     const [imageUploadProgress, setImageUploadProgress] = useState(0)
     const [imageUploadErrors, setImageUploadErrors] = useState(null)
     const [formDatas, setFormDatas] = useState({})
+    console.log(formDatas)
 
    
 
@@ -65,13 +66,17 @@ export default function CreatePost() {
         }
        }
 
+    const getSubmitForm = (e) => {
+        setFormDatas({...formDatas, [e.target.id]: e.target.value})
+    }
+
   return (
     <div className="p-3 max-w-3xl mx-auto min-h-screen w-full">
         <h1 className="text-center text-3xl text-dark-700 font-normal">Create Post...</h1>
         <form className="mt-5 flex flex-col w-full gap-3">
             <div className="mt-4 flex flex-col sm:flex-row justify-between gap-3" >
-                <TextInput  type='text' required placeholder='Title is required' id='title' className='w-full flex-1'/>
-                <Select id='category' className='w-full sm:w-1/3 mt-4 sm:mt-0' required>
+                <TextInput  type='text' required placeholder='Title is required' id='title' className='w-full flex-1' onChange={getSubmitForm}/>
+                <Select id='category' className='w-full sm:w-1/3 mt-4 sm:mt-0' required onChange={getSubmitForm}>
                     <option value='uncategorized'>Select Category</option>
                     <option value='MongoDb'>MongoDb</option>
                     <option value='ReactJs'>ReactJs</option>
@@ -116,7 +121,7 @@ export default function CreatePost() {
             
             { formDatas.image && <img src={formDatas.image} className='w-full h-60 object-cover' alt='image' /> }
 
-            <ReactQuill id='content' required className='w-full h-96 pb-5' theme="snow"  placeholder='Write something here'/>
+            <ReactQuill id='content' required className='w-full h-96 pb-5' theme="snow"  placeholder='Write something here' onChange={(value) =>}/>
             <Button type='submit' className='btn mt-5 w-full' gradientDuoTone='purpleToPink'>Create Post</Button>
         </form>
         {
