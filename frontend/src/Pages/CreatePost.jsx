@@ -111,7 +111,7 @@ export default function CreatePost() {
                 </Button>
             </div>
             
-            {formDatas.image && <img src={formDatas.image} className='w-full h-60 object-cover' alt='image' />}
+            { formDatas.image && <img src={formDatas.image} className='w-full h-60 object-cover' alt='image' /> }
 
             <ReactQuill id='content' required className='w-full h-96 pb-5' theme="snow"  placeholder='Write something here'/>
             <Button type='submit' className='btn mt-5 w-full' gradientDuoTone='purpleToPink'>Create Post</Button>
