@@ -87,7 +87,7 @@ export default function CreatePost() {
             console.log(data)
             if(response.ok){
                 console.log('Post created successfully')
-                navigate('/')
+                navigate(`/post/${data._id}`)
 
             }
         } catch (error) {

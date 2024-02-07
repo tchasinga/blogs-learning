@@ -6,7 +6,7 @@ const { createPost, getPosts, getPost, updatePost, deletePost } = require("../co
 router.post("/createpost", createPost);
 
 // Retrieve all posts
-
+router.get("/getposts", getPosts);
 
 // Retrieve a single post with id
 
