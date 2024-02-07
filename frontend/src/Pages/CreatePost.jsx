@@ -2,8 +2,13 @@ import { Button, FileInput, Select, TextInput } from 'flowbite-react'
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import {getStorage , ref, uploadBytesResumable, getDownloadURL} from 'firebase/storage'
-import { app } from '../firebase';
+
 import { useState } from 'react';
+import { CircularProgressbar } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
+import app from '../firebase';
+import toast, { Toaster } from 'react-hot-toast';
+
 
 
 
@@ -42,7 +47,7 @@ export default function CreatePost() {
                 () => {
                     getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
                         console.log('File available at', downloadURL);
-                        setImageUploadProgress(null);
+                        setImageUploadProgress(null); 
                         setImageUploadErrors(null)
                         setFormDatas({...formDatas, image: downloadURL});
                     });
@@ -92,11 +97,26 @@ export default function CreatePost() {
             </div>
             <div className='flex gap-3 items-center justify-center border-4 border-teal-500 border-dotted p-3'>
                 <FileInput id='image' accept='image/*' required className='w-full'  onChange={(e)=>setFiles(e.target.files[0])}/>
-                <Button type='submit' className='btn  text-xs w-1/3' onClick={handlerUploadImg}>Upload image</Button>
+                <Button type='submit' className='btn  text-xs w-1/3' onClick={handlerUploadImg} disabled={imageUploadProgress}>
+                    {
+                        imageUploadProgress ? 
+                        <div className='flex flex-col items-center gap-1'>
+                            <CircularProgressbar value={imageUploadProgress} text={`${imageUploadProgress}%`} />
+                            <p>Uploading...</p>
+                        </div>
+                        : 'Upload Image'
+                    }
+                </Button>
             </div>
             <ReactQuill id='content' required className='w-full h-96 pb-5' theme="snow"  placeholder='Write something here'/>
             <Button type='submit' className='btn mt-5 w-full' gradientDuoTone='purpleToPink'>Create Post</Button>
         </form>
+        {
+            imageUploadErrors && <p className='text-red-500 text-center'>
+                {
+                }
+                </p>
+        }
     </div>
   )
 }
