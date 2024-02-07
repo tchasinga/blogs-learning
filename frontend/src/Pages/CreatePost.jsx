@@ -1,22 +1,56 @@
 import { Button, FileInput, Select, TextInput } from 'flowbite-react'
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import {getStorage, ref, uploadBytesResumable, getDownloadURL} from 'firebase/storage'
+import {getStorage , ref, uploadBytesResumable, getDownloadURL} from 'firebase/storage'
+import { app } from '../firebase';
+import { useState } from 'react';
 
 
 
 export default function CreatePost() {
 
     const [files , setFiles] = useState(null) 
+    const [imageUploadProgress, setImageUploadProgress] = useState(0)
+    const [imageUploadErrors, setImageUploadErrors] = useState(null)
+    const [formDatas, setFormDatas] = useState({})
 
     const handlerUploadImg = async (e) => {
         e.preventDefault()
         try {
             if(!files){
-                return alert('File not found')
+                setImageUploadErrors("Please select a file as img form")
+                return ;
             }
-            const storage = getStorage();
+            setImageUploadErrors(null)
+            const storage = getStorage(app);
+            const fileName = new Date().getTime() +  files.name;
+            const storageRef = ref(storage, fileName)
+            const uploadTask = uploadBytesResumable(storageRef, files);
+            uploadTask.on(
+                'state_changed',
+                (snapshot) => {
+                    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                    console.log(`Upload is ${progress}% done`);
+                    setImageUploadProgress(progress.toFixed(0));
+                },
+                (error) => {
+                    console.log(error)
+                    setImageUploadErrors("Error while uploading image")
+                    setImageUploadProgress(null)
+                   
+                },
+                () => {
+                    getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+                        console.log('File available at', downloadURL);
+                        setImageUploadProgress(null);
+                        setImageUploadErrors(null)
+                        setFormDatas({...formDatas, image: downloadURL});
+                    });
+                }
+            );
         } catch (error) {
+        setImageUploadErrors("Error while uploading image plaease try again later...")
+        setImageUploadProgress(null)
         console.log(error)
         }
        }
