@@ -8,6 +8,7 @@ import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import app from '../firebase';
 import { Snackbar} from '@mui/material';
+import {useNavigate} from 'react-router-dom'
 
 
 // import toast, { Toaster } from 'react-hot-toast';
@@ -16,7 +17,7 @@ import { Snackbar} from '@mui/material';
 
 
 export default function CreatePost() {
-
+    const navigate = useNavigate()
     const [files , setFiles] = useState(null) 
     const [imageUploadProgress, setImageUploadProgress] = useState(0)
     const [imageUploadErrors, setImageUploadErrors] = useState(null)
@@ -70,10 +71,34 @@ export default function CreatePost() {
         setFormDatas({...formDatas, [e.target.id]: e.target.value})
     }
 
+    const handlerDataSubmit = async (e) => {
+        e.preventDefault()
+        console.log(formDatas)
+        try {
+            const response = await fetch('http://localhost:2000/api/post/createpost', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                },
+                body: JSON.stringify(formDatas)
+            })
+            const data = await response.json()
+            console.log(data)
+            if(response.ok){
+                console.log('Post created successfully')
+                navigate('/')
+
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
   return (
     <div className="p-3 max-w-3xl mx-auto min-h-screen w-full">
         <h1 className="text-center text-3xl text-dark-700 font-normal">Create Post...</h1>
-        <form className="mt-5 flex flex-col w-full gap-3">
+        <form className="mt-5 flex flex-col w-full gap-3" onSubmit={handlerDataSubmit}>
             <div className="mt-4 flex flex-col sm:flex-row justify-between gap-3" >
                 <TextInput  type='text' required placeholder='Title is required' id='title' className='w-full flex-1' onChange={getSubmitForm}/>
                 <Select id='category' className='w-full sm:w-1/3 mt-4 sm:mt-0' required onChange={getSubmitForm}>
@@ -124,7 +149,7 @@ export default function CreatePost() {
             <ReactQuill id='content' required className='w-full h-96 pb-5' theme="snow"  placeholder='Write something here' 
             onChange= {
                 (value) =>{
-                    setFormDatas({...formDatas, content : value}) 
+                    setFormDatas({...formDatas, content : value}); 
                 }
             }
             />
