@@ -7,7 +7,7 @@ import { useState } from 'react';
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import app from '../firebase';
-import toast, { Toaster } from 'react-hot-toast';
+// import toast, { Toaster } from 'react-hot-toast';
 
 
 
@@ -112,10 +112,7 @@ export default function CreatePost() {
             <Button type='submit' className='btn mt-5 w-full' gradientDuoTone='purpleToPink'>Create Post</Button>
         </form>
         {
-            imageUploadErrors && <p className='text-red-500 text-center'>
-                {
-                }
-                </p>
+            imageUploadErrors && <p className='text-red-500 text-center'>{imageUploadErrors}</p>
         }
     </div>
   )
